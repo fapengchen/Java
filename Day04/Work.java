@@ -364,3 +364,69 @@ class Work_20
 		System.out.println("The interest is " + interests);
 	}
 }
+
+class Work_21
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter investment amount: ");
+		Double amount = input.nextDouble();
+
+		System.out.print("Enter annual interest rate in percentage: ");
+		Double percentage = input.nextDouble();
+
+		System.out.print("Enter number of years: ");
+		int years = input.nextInt();
+
+		Double value = amount * Math.pow(1 + (percentage / 1200), years * 12);
+
+		System.out.println("Accumulated value is $" + value); 
+
+	}
+}
+
+class Work_22
+{
+	public static void main(String[] args)
+	{
+				Scanner input = new Scanner(System.in);
+		
+		System.out.print("Enter an amount in double, for examle 11.56: ");
+		int num = input.nextInt();
+		
+		int dollars =  num / 100;//11
+		int pennies = num % 100;//56
+
+		double nickels = pennies/100.0;
+
+		double data = dollars + nickels;
+
+		System.out.println(data);
+
+		
+	}
+}
+
+class Work_23
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the driving distance: ");
+		double distance = input.nextDouble();
+
+		System.out.print("Enter miles per gallon: ");
+		double miles = input.nextDouble();
+
+		System.out.print("Enter price per gallon: ");
+		double price = input.nextDouble();
+
+		double driving = distance / miles * price;
+
+		System.out.println("The cost of driving is $" + driving);
+
+	}
+}
