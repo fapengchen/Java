@@ -307,3 +307,60 @@ class Work_17
 		System.out.println("The wind chill index is " + wind);
 	}
 }
+
+class Work_18
+{
+	public static void main(String[] args)
+	{
+		System.out.println("a   b   pow(a, b)");
+		System.out.println("1   2   " + Math.pow(1,2));
+		System.out.println("2   3   " + Math.pow(2,3));
+		System.out.println("3   4   " + Math.pow(3,4));
+		System.out.println("4   5   " + Math.pow(4,5));
+		System.out.println("5   6   " + Math.pow(5,6));
+	}
+}
+
+class Work_19
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter three for a triangle: ");
+		double x1 = input.nextDouble();//a = x1,y1 x2 y2
+		double y1 = input.nextDouble();//
+
+		double x2 = input.nextDouble();//b = x2,y2 x3 y3
+		double y2 = input.nextDouble();//
+		
+		double x3 = input.nextDouble();//c = x3,y3 x1 y1
+		double y3 = input.nextDouble();//
+
+		double a = Math.pow(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1,2), 0.5);
+		double b = Math.pow(Math.pow(x3 - x2, 2) + Math.pow(y3 - y2,2), 0.5);
+		double c = Math.pow(Math.pow(x1 - x3, 2) + Math.pow(y1 - y3,2), 0.5);
+
+		double s = (a + b + c)/2;
+
+		double area = Math.pow(s * (s - a) * (s - b) * (s - c),0.5);
+
+		System.out.println("The area of the triangle is " + area);
+	}
+}
+
+class Work_20
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter balance and interest rate (e.g., 3 for 3%):");
+		Double balance = input.nextDouble();
+		Double interest = input.nextDouble();
+
+		Double interests = balance * (interest/12) / 100;
+
+		System.out.println("The interest is " + interests);
+	}
+}
