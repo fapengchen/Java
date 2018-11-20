@@ -80,8 +80,6 @@ class Work_4
 	public static void main(String[] args)
 	{
 		int number = (int)(Math.random() * (1-13)+13);
-		System.out.println(number);
-		/**
 		switch(number)
 		{
 			case 1:System.out.println("January");break;
@@ -97,6 +95,6 @@ class Work_4
 			case 11:System.out.println("November");break;
 			case 12:System.out.println("December");
 		}
-	*/
+
 	}
 }
