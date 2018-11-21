@@ -406,3 +406,193 @@ class Work_12
 			System.out.println(number_1 * 100 + number_2 * 10 + number_3 + " is not a palindrome");
 	}
 }
+class Work_18
+{
+	public static void main(String[] args)
+	{
+
+
+	Scanner input = new Scanner(System.in);
+
+	System.out.print("w: ");
+	double w = input.nextDouble();
+
+	if (w <= 1)
+		System.out.println(3.5);
+	else if (w <= 3)
+		System.out.println(5.5);
+	else if (w <= 10)
+		System.out.println(8.5);
+	else if (w <= 20)
+		System.out.println(10.5);
+	else
+		System.out.println("the package cannot be shiped");
+	}
+
+}
+
+class Work_19
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a b c: ");
+		double a = input.nextDouble();
+		double b = input.nextDouble();
+		double c = input.nextDouble();
+
+		if (a < b + c && b < a + c && c < a + b)
+			System.out.println(a + b + c);
+		else
+			System.out.println("error");
+	}
+}
+
+class Work_20
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the temperature in Fahrenheit between -58.F and 41.F: ");
+		double temperature = input.nextDouble();
+
+		System.out.print("Enter the wind speed (>=2) in miles per hour: ");
+		double sped = input.nextDouble();
+		if (temperature >= -58 && temperature <=41 && sped >= 2)
+		{
+			double wind = 35.74 + 0.6215 * temperature - 35.75 * Math.pow(sped, 0.16) + 0.4275 * temperature * Math.pow(sped, 0.16);
+			System.out.println("The wind chill index is " + wind);
+		}
+		else
+			System.out.println("error");
+		
+	}
+}
+
+
+class Work_21
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter year:(e.g, 2012): ");
+		int year = input.nextInt();
+		System.out.print("Enter month: 1-12: ");
+		int month = input.nextInt();
+		System.out.print("Enter the day of the month: 1-31: ");
+		int day = input.nextInt();
+		int m = 0;
+		int k = (int)year % 100;
+		int j = (int)(Math.abs(year / 100));
+		int q = day;
+		if (month == 1|| month == 2)
+		{
+			if (month==1)
+				m = 13;
+			else
+				m = 14;
+		}
+		int h = (q + (26 * (m + 1) / 10) + k + k / 4 + j / 4 + 5 * j) % 7;
+		switch (h)
+		{
+			case 0: System.out.println("Day of the week is Saturday");break;
+			case 1: System.out.println("Day of the week is Sunday");break;
+			case 2: System.out.println("Day of the week is Monday");break;
+			case 3: System.out.println("Day of the week is Tuesday");break;
+			case 4: System.out.println("Day of the week is Wednesday");break;
+			case 5: System.out.println("Day of the week is Thursday");break;
+			case 6: System.out.println("Day of the week is Friday");
+		}
+	}
+}
+
+class Work_22
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a point with two coordinates: ");
+		double x = input.nextInt();
+		double y = input.nextInt();
+		double spacing = (Math.pow(Math.pow(0 - x,2) + Math.pow(0 - y, 2), 0.5));
+		if (spacing <= 10)
+			System.out.println("Point (" + x + ", " + y + ") is in the circle");
+		else
+			System.out.println("Point (" + x + ", " + y + ") is not in the circle");
+	}
+}
+
+class Work_23
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a point with two coordinates: ");
+		double x = input.nextInt();
+		double y = input.nextInt();
+		if (x <= 10/2 && y < 5/2)
+			System.out.println("Point (" + x + ", " + y + ") is in the rectange");
+		else
+			System.out.println("Point (" + x + ", " + y + ") is not in the rectange");
+	}
+}
+class Work_24
+{
+	public static void main(String[] args)
+	{
+		String brand = "";
+
+		int b = (int)(Math.random() * (1-14) + 14);
+		int c = (int)(Math.random() * 3);
+		if (b == 1)
+			brand = "Ace";
+		else if(b == 11)
+			brand = "Jack";
+		else if (b == 12)
+			brand = "Queen";
+		else if (b == 13)
+			brand = "king";
+		else
+			brand = b+"";
+
+		switch(c)
+		{
+			case 0:System.out.println("The card you picked is " + brand + " of Clubs");break;
+			case 1:System.out.println("The card you picked is " + brand + " of Diamonds");break;
+			case 2:System.out.println("The card you picked is " + brand + " of Hearts");break;
+			case 3:System.out.println("The card you picked is " + brand + " of Spades");
+		}
+
+	}
+}
+
+class Work_25
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter x1, y1, x2, y2, x3, y3, x4, y4: ");
+		double x1 = input.nextDouble();
+		double y1 = input.nextDouble();
+		double x2 = input.nextDouble();
+		double y2 = input.nextDouble();
+		double x3 = input.nextDouble();
+		double y3 = input.nextDouble();
+		double x4 = input.nextDouble();
+		double y4 = input.nextDouble();
+
+		double z = (y2 - y1)/(x2 - x1);
+		double b = (y4 - y3)/(x4 - x3);
+		if (z1 != z2)
+		{
+			
+		}
+
+	}
+}
