@@ -406,6 +406,120 @@ class Work_12
 			System.out.println(number_1 * 100 + number_2 * 10 + number_3 + " is not a palindrome");
 	}
 }
+
+class Work_14
+{
+	public static void main(String[] args)
+	{
+		int num = (int)(Math.random() * 2);
+		
+		Scanner input = new Scanner(System.in);
+		System.out.print("Enter You guessed positive and negative 0 is positive and 1 is negative: ");
+		int guess = input.nextInt();
+
+		if (num == guess)
+			System.out.println("correct");
+		else
+			System.out.println("wrong");
+	}
+}
+
+class Work_15
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		int lottery = (int)(Math.random() * (100 - 1000) + 1000);
+		System.out.println(lottery);
+		System.out.print("Enter yo7ur lottery pick (two digites): ");
+		int guess = input.nextInt();
+
+		int newlottery = lottery;
+		int newguess =  guess;
+
+		int lottery1 = lottery / 100;
+		lottery = lottery % 100;
+		int lottery2 = lottery / 10;
+		int lottery3 = lottery % 10;
+
+		int guessDigit1 = guess / 100;
+		guess = guess % 100;
+		int guessDigit2 = guess / 10;
+		int guessDigit3 = guess % 10;
+
+		if (newguess == newlottery)
+			System.out.println("Exact match you win $10,000");
+		else if (lottery1 == guessDigit2 && lottery2 == guessDigit1 && lottery3 == guessDigit3
+			  || lottery1 == guessDigit3 && lottery3 == guessDigit1 && lottery2 == guessDigit2
+			  || lottery2 == guessDigit3 && lottery3 == guessDigit2 && lottery1 == guessDigit1
+			  || lottery1 == guessDigit2 && lottery2 == guessDigit3 && lottery3 == guessDigit1
+			  || lottery1 == guessDigit3 && lottery2 == guessDigit1 && lottery3 == guessDigit2)
+			System.out.println("Exact match you win $3,000");
+		else if (lottery1 == guessDigit1
+			  || lottery1 == guessDigit2
+			  || lottery1 == guessDigit3
+			  || lottery2 == guessDigit1
+			  || lottery2 == guessDigit2
+			  || lottery2 == guessDigit3
+			  || lottery3 == guessDigit1
+			  || lottery3 == guessDigit2
+			  || lottery3 == guessDigit3)
+			System.out.println("Exact match you win $1,000");
+		else
+			System.out.println("Sorry, no match");
+	}
+}
+
+class Work_16
+{
+	public static void main(String[] args)
+	{
+		int x = (int)(Math.random() * 100);
+		int y = (int)(Math.random() * 200);
+		System.out.println("(x,y) x: " + x + "  y : " + y);
+	}
+}
+
+class Work_17
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		int box = (int)(Math.random() * 3);
+		System.out.print("scissor (0), rock (1), paper (2): ");
+		int guess = input.nextInt();
+
+		switch (guess)
+		{
+			case 0: 
+				if (box == 0)
+					System.out.println("The computer is scissor. You are scissor too. It is a draw");
+				else if (box == 1)
+					System.out.println("The computer is rock You are scissor . You lose");
+				else
+					System.out.println("The computer is paper You are scissor . You win");
+				break;
+			case 1:
+				if (box == 1)
+					System.out.println("The computer is rock. You are rock too. It is a draw");
+				else if (box == 2)
+					System.out.println("The computer is paper. You are rock. You lose");
+				else
+					System.out.println("The computer is scissor. You are rock. You win");
+				break;
+			case 2:
+				if (box == 2)
+					System.out.println("The computer is paper. You are paper too. It is a draw");
+				else if (box == 0)
+					System.out.println("The computer is scissor. You are paper . You lose");
+				else
+					System.out.println("The computer is rock. You are paper . You win");
+		}
+	}
+}
+
 class Work_18
 {
 	public static void main(String[] args)
@@ -587,12 +701,31 @@ class Work_25
 		double x4 = input.nextDouble();
 		double y4 = input.nextDouble();
 
-		double z = (y2 - y1)/(x2 - x1);
-		double b = (y4 - y3)/(x4 - x3);
-		if (z1 != z2)
+		double e = (y1 - y2) * x1 - (x1 - x2) * y1;
+		double f = (y3 - y4) * x3 - (x3 - x4) * y3;
+		double a = y1 - y2;
+		double b =  -(x1 - x2);
+		double c = y3 - y4;
+		double d = -(x3 - x4);
+		double z = a * d - b * c;
+		if (z != 0)
 		{
-			
+			double x = (e * d - b * f) / (a * d - b * c);
+			double y = (a * f - e * c) / (a * d - b * c);
+			System.out.println("The intersecting point is at (" + x +" , " + y +")");
+		}
+		else
+		{
+			System.out.println("The two lines are parallel");
 		}
 
+	}
+}
+
+class Work_26
+{
+	public static void main(String[] args)
+	{
+		
 	}
 }
