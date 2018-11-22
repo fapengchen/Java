@@ -726,6 +726,221 @@ class Work_26
 {
 	public static void main(String[] args)
 	{
-		
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter an integer: ");
+		int integer = input.nextInt();
+
+		System.out.println("Is" + integer + " divisible by 5 and 6? " + ((integer % 5 == 0 && integer % 6 == 0)?"true":"false"));
+		System.out.println("Is" + integer + " divisible by 5 or 6? " + ((integer % 5 == 0 || integer % 6 == 0)?"true":"false"));
+		System.out.println("Is" + integer + " divisible by 5 or 6?, but not both? " + ((integer % 5 == 0 ^ integer % 6 == 0)?"true":"false"));
+	}
+}
+
+class Work_27
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a point's x- and y-coordinates: ");
+		double x = input.nextDouble();
+		double y = input.nextDouble();
+		if(x < 0 || y < 0)
+			System.out.println("The point is not in the triangle.");
+		else{
+			double cx = 200 - 2*y;
+			if(x > cx)
+				System.out.println("The point is not in the triangle.");
+			else
+				System.out.println("The point is in the triangle.");
+			}
+
+	}
+}
+
+class Work_28
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter  r1`s center x-, y-coordinates,width, and height: ");
+		double r1_x = input.nextDouble();
+		double r1_y = input.nextDouble();
+		double r1_width = input.nextDouble();
+		double r1_height = input.nextDouble();
+
+		System.out.print("Enter  r2`s center x-, y-coordinates,width, and height: ");
+		double r2_x = input.nextDouble();
+		double r2_y = input.nextDouble();
+		double r2_width = input.nextDouble();
+		double r2_height = input.nextDouble();
+
+		double spacing = (Math.pow(Math.pow(r2_x - r1_x,2) + Math.pow(r2_y - r1_y, 2), 0.5));
+		if (spacing <= r1_width - r2_width/2 || spacing <= r1_height - r2_height/2)
+			System.out.println("r2 is inside r1");
+		else if (spacing > r1_width - r2_width/2 || spacing > r1_height - r2_height/2)
+			System.out.println("r2 does not overlap r1");
+		else
+			System.out.println("r2 is overlaps r1");
+
+
+	}
+}
+
+class Work_29
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter  r1`s center x-, y-coordinates,and radius: ");
+		double r1_x = input.nextDouble();
+		double r1_y = input.nextDouble();
+		double r1_radius = input.nextDouble();
+
+
+		System.out.print("Enter  r2`s center x-, y-coordinates,and radius:");
+		double r2_x = input.nextDouble();
+		double r2_y = input.nextDouble();
+		double r2_radius = input.nextDouble();
+
+
+		double spacing = (Math.pow(Math.pow(r2_x - r1_x,2) + Math.pow(r2_y - r1_y, 2), 0.5));
+		if (spacing <= r1_radius - r2_radius/2)
+			System.out.println("circle2 is inside circle1");
+		else if (spacing > r1_radius - r2_radius/2)
+			System.out.println("circle2 is does not overlap circle1");
+		else
+			System.out.println("circle2 is overlap circle1");
+
+
+	}
+}
+
+class Work_30
+{
+	public static void main(String[] args)
+	{
+		Scanner input  = new Scanner(System.in);
+
+		System.out.print("Enter the time zone offset to GMT: ");
+		int Gmt = input.nextInt();
+		long totalMilliseconds = System.currentTimeMillis();
+
+		long totalSeconds = totalMilliseconds / 1000;
+
+		long currentSecond = totalSeconds % 60;
+
+		long totalMinutes = totalSeconds / 60;
+
+		long currentMinute = totalMinutes % 60;
+
+
+		long totalHours = totalMinutes / 60;
+		totalHours  = totalHours + Gmt;
+		long currentHour = totalHours % 12;
+		System.out.println("The current time is " + currentHour + " : " + currentMinute + " : " + currentSecond);
+	}
+}
+
+class Work_31
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the exchange rate from dollars to RMB: ");
+		double exchange = input.nextDouble();
+
+		System.out.print("Enter 0 to convert dollars to RMB and 1 vice versa: ");
+		int versa = input.nextInt();
+		if (versa > 1)
+			System.exit(0);
+		System.out.print("Enterthedoll aramount: ");
+		double amount = input.nextDouble();
+
+		switch (versa)
+		{
+			case 0: System.out.println("$" + amount + " is "+ amount * exchange + " yuan");break;
+			case 1: System.out.println(amount + " yuan is $" + (int)(amount / exchange * 100) / 100.0);
+		}
+	}
+}
+
+class Work_32
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter three points for p0, p1, and p2: ");
+		double x0 = input.nextDouble();
+		double y0 = input.nextDouble();
+		double x1 = input.nextDouble();
+		double y1 = input.nextDouble();
+		double x2 = input.nextDouble();
+		double y2 = input.nextDouble();
+
+		double z = (x1 - x0) * (y2 - y0) - (x2 - x0) * (y1 - y0);
+		if (z > 0 )
+			System.out.println("(" + x2 +"," + y2 +") is on the left side of the line from (" + 
+								x0 + ", " + y0 + ") to (" + x1 + ", " + y1 + ")");
+		else if (z == 0)
+			System.out.println("(" + x2 +"," + y2 +") is on the line from (" + 
+								x0 + ", " + y0 + ") to (" + x1 + ", " + y1 + ")");
+		else
+			System.out.println("(" + x2 +"," + y2 +") is on the right side of the line from (" + 
+								x0 + ", " + y0 + ") to (" + x1 + ", " + y1 + ")");
+	}
+}
+
+class Work_33
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter weight and price for package 1: ");
+		double p1_w = input.nextDouble();
+		double p1_h = input.nextDouble();
+
+		System.out.print("Enter weight and price for package 2: ");
+		double p2_w = input.nextDouble();
+		double p2_h = input.nextDouble();
+		double price_1 = p1_w / p1_h;
+		double price_2 = p2_w / p2_h;
+
+		if (price_1 > price_2)
+			System.out.println("Package 1 has a better price.");
+		else if (price_1 < price_2)
+			System.out.println("Package 2 has a better price.");
+		else
+			System.out.println("Two Package have the same price.");
+	}
+}
+
+class Work_34
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter three points for p0, p1, and p2: ");
+		double x0 = input.nextDouble();
+		double y0 = input.nextDouble();
+		double x1 = input.nextDouble();
+		double y1 = input.nextDouble();
+		double x2 = input.nextDouble();
+		double y2 = input.nextDouble();
+
+		double z = (x1 - x0) * (y2 - y0) - (x2 - x0) * (y1 - y0);
+		if (z == 0 )
+			System.out.println("(" + x2 +"," + y2 +") is on the line from (" + 
+								x0 + ", " + y0 + ") to (" + x1 + ", " + y1 + ")");
+		else 
+			System.out.println("(" + x2 +"," + y2 +") is not on the line from (" + 
+								x0 + ", " + y0 + ") to (" + x1 + ", " + y1 + ")");
 	}
 }
