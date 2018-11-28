@@ -48,7 +48,7 @@ public class GuessBirthday
 		System.out.print("Is your birthday in Set2?\n");
 		System.out.print(set2);
 		System.out.print("\nEnter 0 for No and 1 for Yes: ");
-		int answer = input.nextInt();
+		answer = input.nextInt();
 
 		if (answer == 1)
 			day += 2;
@@ -57,7 +57,7 @@ public class GuessBirthday
 		System.out.print("Is your birthday in Set3?\n");
 		System.out.print(set1);
 		System.out.print("\nEnter 0 for No and 1 for Yes: ");
-		int answer = input.nextInt();
+		answer = input.nextInt();
 
 		if (answer == 1)
 			day += 4;
@@ -65,7 +65,7 @@ public class GuessBirthday
 		System.out.print("Is your birthday in Set4?\n");
 		System.out.print(set1);
 		System.out.print("\nEnter 0 for No and 1 for Yes: ");
-		int answer = input.nextInt();
+		answer = input.nextInt();
 
 		if (answer == 1)
 			day += 8;
@@ -74,11 +74,11 @@ public class GuessBirthday
 		System.out.print("Is your birthday in Set5?\n");
 		System.out.print(set5);
 		System.out.print("\nEnter 0 for No and 1 for Yes: ");
-		int answer = input.nextInt();
+		answer = input.nextInt();
 
 		if (answer == 1)
 			day += 16;
 
-		System.out.print("\nYour birthday is " + day + "!")
+		System.out.print("\nYour birthday is " + day + "!");
 	}
 }
