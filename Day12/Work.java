@@ -121,3 +121,240 @@ class Work_5
 		System.out.println("The are of the polygon is " + s);
 	}
 }
+
+class Work_6
+{
+	public static void main(String[] args)
+	{
+		int r = 40;
+		double aa = Math.random() * (2 * Math.PI);
+		double bb = Math.random() * (2 * Math.PI);
+		double cc = Math.random() * (2 * Math.PI);
+
+		double x1 = r * Math.cos(aa);
+		double y1 = r * Math.sin(aa);
+		double x2 = r * Math.cos(bb);
+		double y2 = r * Math.sin(bb);
+		double x3 = r * Math.cos(cc);
+		double y3 = r * Math.sin(cc);
+
+		double a = Math.sqrt((x2 - x3) * (x2 - x3) + (y2 - y3) * (y2 - y3));
+		double b = Math.sqrt((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3));
+		double c = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+
+		double A = Math.toDegrees(Math.acos((a * a - b * b - c - c) / (-2 * b * c))); 
+		double B = Math.toDegrees(Math.acos((b * b - a * a - c - c) / (-2 * a * c))); 
+		double C = Math.toDegrees(Math.acos((c * c - b * b - a - a) / (-2 * a * b)));
+
+		System.out.println("A: " + A + "\nB: " + B + "\nC: "+ C );
+	}
+}
+
+
+
+class Work_7 
+{
+	public static void main(String[] args)
+	{
+		Scanner cin = new Scanner(System.in);
+		double oneDegree = Math.PI/180;
+		System.out.print("Enter the radius of the bounding circle:");
+		double radius = cin.nextDouble();
+		System.out.println("The coordinating of five points on the pentagon are");
+		System.out.println("(" + 0 + "," + radius + ")");
+		double x = Math.sqrt((radius*radius)/(1+Math.tan(18*oneDegree)*Math.tan(18*oneDegree)));
+		double y = x*Math.tan(18*oneDegree);
+		System.out.println("(" + x + "," + y + ")");
+		System.out.println("(" + -x + "," + y + ")");
+		x = Math.sqrt((radius*radius)/(1+Math.tan(54*oneDegree)*Math.tan(54*oneDegree)));
+		y = x*Math.tan(54*oneDegree);
+		System.out.println("(" + x + "," + y + ")");
+		System.out.println("(" + -x + "," + y + ")");
+	}
+}
+
+class Work_8
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a ASCII code: ");
+		int code = input.nextInt();
+
+		char c_a = (char)code;
+		System.out.println("The character for AcSCII " + c_a + " is " + code);
+
+	}
+}
+
+class Work_9
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a character: ");
+		String c = input.nextLine();
+
+		int ch = (int)c.charAt(0);
+
+
+		System.out.print("The Unicode for the character " +  c + " is " + ch);
+	}
+}
+
+class Work_10
+{
+	public static void main(String[] args)
+	{
+		String set1 = 
+		" 1  3  5  7\n" +
+		" 9 11 13 15\n" +
+		"17 19 21 23\n" +
+		"25 27 29 31";
+
+		String set2 = 
+		" 2  3  6  7\n" +
+		"10 11 14 15\n" +
+		"18 19 22 23\n" +
+		"26 27 30 31";
+
+		String set3 = 
+		" 4  5  6  7\n" +
+		"12 13 14 15\n" +
+		"20 21 22 23\n" +
+		"28 29 30 31";
+		String set4 = 
+		" 8  9 10 11\n" +
+		"12 13 14 15\n" +
+		"24 25 26 27\n" +
+		"28 29 30 31";
+
+		String set5 = 
+		"16 17 18 19\n" +
+		"20 21 22 23\n" +
+		"24 25 26 27\n" +
+		"28 29 30 31";
+
+		int day = 0;
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Is your birthday in Set1?\n");
+		System.out.print(set1);
+		System.out.print("\nEnter 0 for No and 1 for Yes: ");
+		String answer = input.nextLine();
+
+		if (answer.equals("Y"))
+			day += 1;
+
+
+		System.out.print("Is your birthday in Set2?\n");
+		System.out.print(set2);
+		System.out.print("\nEnter 0 for No and 1 for Yes: ");
+		answer = input.nextLine();
+
+		if (answer.equals("Y"))
+			day += 2;
+
+
+		System.out.print("Is your birthday in Set3?\n");
+		System.out.print(set1);
+		System.out.print("\nEnter 0 for No and 1 for Yes: ");
+		answer = input.nextLine();
+
+		if (answer.equals("Y"))
+			day += 4;
+
+		System.out.print("Is your birthday in Set4?\n");
+		System.out.print(set1);
+		System.out.print("\nEnter 0 for No and 1 for Yes: ");
+		answer = input.nextLine();
+
+		if (answer.equals("Y"))
+			day += 8;
+
+
+		System.out.print("Is your birthday in Set5?\n");
+		System.out.print(set5);
+		System.out.print("\nEnter 0 for No and 1 for Yes: ");
+		answer = input.nextLine();
+
+		if (answer.equals("Y"))
+			day += 16;
+
+		System.out.print("\nYour birthday is " + day + "!");
+	}
+}
+
+class Work_11
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a decimal value(0 to 15): ");
+		int n = input.nextInt();
+
+		if (n >= 0 && n <= 15)
+		{
+			if (n < 10)
+				System.out.println("The hex value is " + n);
+			else
+			{
+				char nn = (char)((n - 10) + 'A');
+				System.out.println("The hex value is " + nn);
+			}
+		}
+		else
+			System.out.println(n +  " is an invalid input");
+
+
+	}
+}
+
+class Work_12
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a hex digit: ");
+		String n = input.nextLine();
+		char n1 = n.charAt(0);
+
+		if (Character.isDigit(n1))
+		{
+			int n2 = (int)n1;
+			int n_1 = n2 % 2;
+			n2 /= 2;
+			int n_2 = n2 % 2;
+			n2 /= 2;
+			int n_3 = n2 % 2;
+			n2 /= 2;
+			int n_4 = n2 % 2;
+			System.out.println("The binary value is " + 
+				n_4 + "" + n_3 + "" + n_2 + "" + n_1);
+
+		}
+		else if (Character.isLetter(n1))
+		{
+			int n2 = n1 - 'A';
+			if (n2 <= 5)
+			{
+				n2 += 10;
+				int n_1 = n2 % 2;
+				n2 /= 2;
+				int n_2 = n2 % 2;
+				n2 /= 2;
+				int n_3 = n2 % 2;
+				n2 /= 2;
+				int n_4 = n2 % 2;
+				System.out.println("The binary value is " + 
+					n_4 + "" + n_3 + "" + n_2 + "" + n_1);
+			}
+			else
+				System.out.println(n1 + " is an invalid input ");
+		}
+	}
+}
