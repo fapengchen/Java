@@ -358,3 +358,101 @@ class Work_12
 		}
 	}
 }
+
+class Work_13
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a letter: ");
+		String letters = input.nextLine();
+		char letter = letters.charAt(0);
+
+		if (Character.isLetter(letter))
+		{
+			letter = Character.toUpperCase(letter);
+			if (letter == 'A' || letter == 'E' || letter == 'I' || letter == 'O' || letter == 'U')
+				System.out.println(letters + " is a vowel");
+			else
+				System.out.println(letters + " is a consonant");
+		}
+		else
+			System.out.println(letters + " is a invalid input");
+
+	}
+}
+
+class Work_14
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a letter grade: ");
+		String grades =  input.nextLine();
+		char grade = grades.charAt(0);
+
+		if (Character.isLetter(grade))
+		{
+			if (((grade >= 65) && (grade <= 68)))
+			{
+				int n = 'A' - grade + 4;
+				System.out.println("The numberic value for grade " + grade + " is "+ n);				
+			}
+			else if (grade == 'F')
+				System.out.println("The number value for grade F is 0");
+			else
+				System.out.println(grades + " is an invalid grade");
+		}
+		else
+			System.out.println(grades + " is an invalid grade");
+
+	}
+}
+
+class Work_15
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a letter: ");
+		String letters = input.nextLine();
+		char letter = letters.charAt(0);
+
+		if (Character.isLetter(letter))
+		{
+			letter = Character.toLowerCase(letter);
+			if (letter == 'a' || letter == 'b' || letter == 'c')
+				System.out.println("The corresponding number is 2");
+			else if (letter == 'd' || letter == 'e' || letter == 'f')
+				System.out.println("The corresponding number is 3");
+			else if (letter == 'g' || letter == 'h' || letter == 'i')
+				System.out.println("The corresponding number is 4");
+			else if (letter == 'j' || letter == 'k' || letter == 'l')
+				System.out.println("The corresponding number is 5");
+			else if (letter == 'm' || letter == 'n' || letter == 'o')
+				System.out.println("The corresponding number is 6");
+			else if (letter == 'p' || letter == 'q' || letter == 'r' || letter == 's')
+				System.out.println("The corresponding number is 7");
+			else if (letter == 't' || letter == 'u' || letter == 'v')
+				System.out.println("The corresponding number is 8");
+			else if (letter == 'w' || letter == 'x' || letter == 'y' || letter == 'z')
+				System.out.println("The corresponding number is 9");
+			else
+				System.out.println(letter + " is an invalid input");
+		}
+		else
+			System.out.println(letter + " is an invalid input");
+	}
+}
+
+class Work_16
+{
+	public static void main(String[] args)
+	{
+		int n = 65 + (int)(Math.Random() * 27);
+		char N = (char)n;
+	}
+}
