@@ -452,7 +452,136 @@ class Work_16
 {
 	public static void main(String[] args)
 	{
-		int n = 65 + (int)(Math.Random() * 27);
+		int n = 65 + (int)(Math.random() * 26);
 		char N = (char)n;
+		System.out.println("Radom n: " + N);
+	}
+}
+
+class Work_17
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a year: ");
+		int year = input.nextInt();
+
+		System.out.print("Enter a month: ");
+		input.nextLine();
+		String month = input.nextLine();
+
+		if (((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) && month.equals("Feb"))
+			System.out.println("Jan " + year + " has 29 days");
+		else
+		{
+			if (month.equals("Jan") || month.equals("Mar") || month.equals("May") || month.equals("Jul") || month.equals("Aug") || month.equals("Oct") || month.equals("Dec"))
+				System.out.println("Jan " + year + " has 31 days");
+			else if (month.equals("Feb"))
+				System.out.println("Jan " + year + " has 28 days");
+			else
+				System.out.println("Jan " + year + " has 30 days");
+		}
+
+	}
+}
+
+class Work_18
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter two characters: ");
+		String characters = input.nextLine();
+		char character1 = characters.charAt(0);
+		char character2 = characters.charAt(1);
+
+		String subject = "";
+		String grade = "";
+		if ((character1 == 'M' || character1 == 'C' || character1 == 'I') && (character2 <= '4'))
+		{
+
+			if (character1 == 'M')
+				subject =  "Mathematics";
+			if (character1 == 'C')
+				subject =  "Computer Science";
+			if (character1 == 'I')
+				subject =  "Information Technology";
+			if (character2 == '1')
+				grade = "Freshman";
+			if (character2 == '2')
+				grade = "Sophomore";
+			if (character2 == '3')
+				grade = "Junior";
+			if (character2 == '4')
+				grade = "Senior";
+			System.out.println(subject + " " + grade);
+		}
+		else
+			System.out.println("Invalid input");
+
+	}
+}
+
+class Work_19
+{
+	public static void main(String[] args) 
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the first 9 digits of an ISBN as integer: ");
+		String digits = input.nextLine();
+
+
+		int d1 = Integer.parseInt(digits.charAt(0)+"");
+		int d2 = Integer.parseInt(digits.charAt(1)+"");
+		int d3 = Integer.parseInt(digits.charAt(2)+"");
+		int d4 = Integer.parseInt(digits.charAt(3)+"");
+		int d5 = Integer.parseInt(digits.charAt(4)+"");
+		int d6 = Integer.parseInt(digits.charAt(5)+"");
+		int d7 = Integer.parseInt(digits.charAt(6)+"");
+		int d8 = Integer.parseInt(digits.charAt(7)+"");
+		int d9 = Integer.parseInt(digits.charAt(8)+"");
+
+		int d10 = (d1 + d2 * 2 + d3 * 3 + d4 * 4 + d5 * 5 + d6 * 6 + d7 * 7 + d8 * 8 + d9 * 9 ) % 11;
+
+		if (d10 == 10)
+			System.out.println("The ISBN-10 number is " + d1 + d2 + d3 + d4 + d5 + d6 + d7 + d8 + d9 + "x");
+		else
+			System.out.println("The ISBN-10 number is " + d1 + d2 + d3 + d4 + d5 + d6 + d7 + d8 + d9 + d10);
+
+
+	}
+}
+
+class Work_20
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter String: ");
+		String s = input.nextLine();
+
+		System.out.println("length: " + s.length() + "\none: "+ s.charAt(0));
+
+	}
+}
+
+class Work_21
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a SSN: ");
+		String ssn = input.nextLine();
+		int ssn1 = ssn.indexOf('-');
+		int ssn2 = ssn.lastIndexOf('-');
+		if ((ssn.length() == 11) && (ssn1 == 3) && (ssn2 == 6))
+			System.out.println(ssn + " is a valid social security number");
+		else
+			System.out.println(ssn + " is a invalid social security number");
 	}
 }
