@@ -585,3 +585,153 @@ class Work_21
 			System.out.println(ssn + " is a invalid social security number");
 	}
 }
+
+class Work_22
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter string s1: ");
+		String s1 = input.nextLine();
+		System.out.print("Enter string s2: ");
+		String s2 = input.nextLine();
+
+		if (s1.contains(s2))
+			System.out.println(s2 + " is substring of " + s1);
+		else
+			System.out.println(s2 + " is not a substring of " + s2);
+
+	}
+}
+
+class Work_23
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter employee's nmae: ");
+		String name = input.nextLine();
+		System.out.print("Enter number of hours worked in week: ");
+		double hours = input.nextDouble();
+		System.out.print("Enter hourly pay rate: ");
+		double pay = input.nextDouble();
+		System.out.print("Enter federal tax withholding rate: ");
+		double federal = input.nextDouble();
+		System.out.print("Enter state tax withholding rate: ");
+		double state = input.nextDouble();
+
+		double initial_pay = hours * pay;
+		double f_withholding = initial_pay * federal;
+		double s_withholding = initial_pay * state;
+		double last_pay = initial_pay - f_withholding - s_withholding;
+
+		System.out.println("Employee Name: " + name);
+		System.out.println("Hours Worked: " + hours);
+		System.out.printf("Pay Rate: $%.2f\n",pay);
+		System.out.printf("Gross Pay: $%.2f\n",initial_pay);
+		System.out.println("Deductions: ");
+		System.out.printf("\tFederal Withholding (%.1f%%): $%.1f\n",federal*100,f_withholding);
+		System.out.printf("\tState Withholding (%.1f%%): $%.2f\n",state*100,s_withholding);
+		System.out.printf("\tTotal Deduction: $%.1f\n",f_withholding + s_withholding);
+		System.out.printf("Net Pay: $%.2f\n",last_pay);
+
+	}
+}
+
+class Work_24
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the first city: ");
+		String city1 = input.nextLine();
+		System.out.print("Enter the second city: ");
+		String city2 = input.nextLine();
+		System.out.print("Enter the third city: ");
+		String city3 = input.nextLine();
+		System.out.print("The three cities in alphabetical order are ");
+		if (city1.compareToIgnoreCase(city2) < 0)
+		{
+			if (city2.compareToIgnoreCase(city3) < 0)
+				System.out.println(city1 + " " + city2 + " " + city3);
+			else
+			{
+				if (city1.compareToIgnoreCase(city3) < 0)
+					System.out.println(city1 + " " + city3 + " " + city2);
+				else
+					System.out.println(city3 + " " + city1 + " " + city2);
+			}	
+		}
+		else if (city2.compareToIgnoreCase(city1) < 0)
+		{
+			if (city1.compareToIgnoreCase(city3) < 0)
+				System.out.println(city2 + " " + city1 + " " + city3);
+			else
+			{
+				if (city2.compareToIgnoreCase(city3) < 0)
+					System.out.println(city2 + " " + city3 + " " + city1);
+				else
+					System.out.println(city3 + " " + city2 + " " + city1);
+			}
+		}
+
+	}
+}
+
+class Work_25
+{
+	public static void main(String[] args)
+	{
+		char a1 = (char)(65 + (int)(Math.random() * 26));
+		char a2 = (char)(65 + (int)(Math.random() * 26));
+		char a3 = (char)(65 + (int)(Math.random() * 26));
+
+		int n = (int)(Math.random() * 9999);
+
+		System.out.printf("License plate: %c%c%c%04d\n",a1,a2,a3,n);
+	}
+}
+
+class Work_26
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		
+		System.out.print("Enter an amount in double, for examle 11.56: ");
+		double amount = input.nextDouble();
+		
+		String aamount = amount + "";
+
+		int n = aamount.indexOf('.');
+		int amount_1 = Integer.parseInt(aamount.substring(0,n));
+		int amount_2 = Integer.parseInt(aamount.substring(n+1));
+		
+		int numberOfQuarters = amount_2 / 25;
+		amount_2 =  amount_2 % 25;
+		
+		int numberOfDimes = amount_2 / 10;
+		amount_2 = amount_2 % 10;
+		
+		int numberOfNickels = amount_2 / 5;
+		amount_2 = amount_2 % 5;
+
+		int numberOfPennies = amount_2;
+
+
+		System.out.println("Your amount " + amount + " consists of");
+		System.out.println("    " + amount_1 + " doollars ");
+		System.out.println("    " + numberOfQuarters + " quarters ");
+		System.out.println("    " + numberOfDimes + " dimes ");
+		System.out.println("    " + numberOfNickels + "nickels ");
+		System.out.println("    " + numberOfPennies + "pennies ");
+
+		
+	}
+}
+
+		
+		
