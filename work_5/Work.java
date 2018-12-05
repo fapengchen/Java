@@ -107,3 +107,135 @@ class Work_2
 			"\nTest time is " + testTime / 1000 + " seconds\n" + output +"\n");
 	}
 }
+
+class Work_3
+{
+	public static void main(String[] args)
+	{
+		
+		double pound = 2.2;
+		System.out.println("kg         pound");
+		for (int i = 1;i <= 199;i+=2)
+		{
+			System.out.printf("%d         %3.1f \n",i,i*pound);
+		}
+	}
+}
+class Work_4
+{
+	public static void main(String[] args)
+	{
+		double kilometer = 1.609;
+		System.out.println("statute         kilometer");
+		for (int i = 1;i <= 10;i++)
+		{
+			System.out.printf("%d         %.3f \n",i,i*kilometer);
+		}
+	}
+}
+
+class Work_5
+{
+	public static void main(String[] args)
+	{
+		System.out.println("kg         pound         pound         kg");
+		double kp = 2.2;
+		double pk = 0.4545;
+		for (int i = 1,j=20;i <= 199 || j <= 515;i+=2,j+=5)
+		{
+			System.out.printf("%d         %.1f         %d         %.2f\n",i,i*kp,j,j*pk);
+		}
+
+	}
+}
+
+class Work_6
+{
+	public static void main(String[] args)
+	{
+		System.out.println("statute         kilometer         kilometer         statute");
+		double sk = 1.609;
+		double ks = 0.6215;
+		for (int i = 1,j=20;i <= 10 || j <= 65;i++,j+=5)
+		{
+			System.out.printf("%d         %.3f         %d         %.3f\n",i,i*sk,j,j*ks);
+		}
+	}
+}
+
+class Work_7
+{
+	public static void main(String[] args)
+	{
+		int tuition = 10000;
+		int sum = 0;
+		for (int i=1;i<=14;i++)
+		{
+			tuition = (int)((1+0.05) * tuition);
+			if (i == 10)
+				System.out.println("Student fees after 10 years: " + tuition);
+			if (i>=11)
+				sum += tuition;
+
+			
+		}
+		System.out.println("Total tuition after 10 years and 4 years: "+ sum);
+	}
+}
+
+class Work_8
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the number of students: ");
+		int number = input.nextInt();
+
+		input.nextLine();
+		System.out.print("Enter student name: ");
+		String names = input.nextLine();
+
+		System.out.print("Enter student grades: ");
+		String grades = input.nextLine();
+
+		int n = 0;
+		int g = 0;
+
+		int k = 0;
+		int j = 0;
+
+		int max = 0;
+		String max_name = "";
+
+		String name = "";
+		String stringGrade = "";
+
+		int grade = 0;
+		
+		for (int i = 0;i < number; i++)
+		{
+			k = names.indexOf(' ',n);
+			j = grades.indexOf(' ',g);
+			if (i==number-1)
+			{
+				k = names.length();
+				j = grades.length();
+			}
+			name = names.substring(n,k);
+			stringGrade = grades.substring(g,j);	
+			n = k+1;
+			g = j+1;
+			grade = Integer.parseInt(stringGrade);
+			if (grade > max)
+			{
+				max = grade;
+				max_name = name;
+			}
+
+		}
+
+		System.out.println("The name of the highest grade is " + max_name + " results for " + max);
+
+	}
+}
