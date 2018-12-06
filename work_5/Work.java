@@ -667,14 +667,14 @@ class Work_23
 {
 	public static void main(String[] args)
 	{
-		System.out.println("From left to right：");
+		System.out.println("From left to right: ");
 		double sum = 0;
 		for (double i=1;i <= 50000;i++)
 		{
 			sum = sum + (1/i);
 		}
 		System.out.println(sum);
-		System.out.println("From right to left：");
+		System.out.println("From right to left: ");
 		double sum2 = 0;
 		for (double j=50000;j >= 1;j--)
 		{
@@ -716,4 +716,296 @@ class Work_25
 
 		System.out.println("sum: :" + sum);
 	}
+}
+
+class Work_26
+{
+	public static void main(String[] args)
+	{
+		double e = 1;
+		double item = 1;
+		
+		for (int i =1;i<=100000;i++)
+		{	
+			item = item / i;
+			e += item;
+			if (i % 10000 == 0)
+				System.out.println("e: " + e);
+		}
+
+
+	}
+}
+
+class Work_27
+{
+	public static void main(String[] args)
+	{
+		int count = 0;
+		for (int i = 101;i <= 2100;i++)
+		{
+			if ((i % 4 == 0 && i % 100 != 0) || (i % 400 == 0))
+			{
+				count += 1;
+				if (count % 10 == 0)
+					System.out.println(i);
+				else
+					System.out.print(i + " ");
+			}
+	
+
+		}
+	}
+}
+
+class Work_28
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the year and the day of the week on the first day of the year: ");
+		int year = input.nextInt();
+		int week = input.nextInt();
+		String M = "";
+		int W = 0;
+		boolean leap = ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))? true : false;
+		for (int i=1;i<=12;i++)
+		{
+			if (i==1)
+			{
+				M="January";
+			}
+			else if (i == 2)
+			{
+				M="February";
+				W=(31%7+week)%7;
+				week=W;
+			}
+			else if (i == 3)
+			{
+				M="March";
+				if (leap)
+					W=(29%7+week)%7;
+				else
+					W=(29%7+week)%7;
+				week=W;
+			}
+			else if (i == 4)
+			{
+				M="February";
+				W=(31%7+week)%7;
+				week=W;
+			}
+			else if (i == 5)
+			{
+				M="May";
+				W=(30%7+week)%7;
+				week=W;
+			}
+			else if (i == 6)
+			{
+				M="June";
+				W=(31%7+week)%7;
+				week=W;
+			}
+			else if (i == 7)
+			{
+				M="July";
+				W=(30%7+week)%7;
+				week=W;
+			}
+			else if (i == 8)
+			{
+				M="August";
+				W=(31%7+week)%7;
+				week=W;
+			}
+			else if (i == 9)
+			{
+				M="September";
+				W=(31%7+week)%7;
+				week=W;
+			}
+			else if (i == 10)
+			{
+				M="October";
+				W=(30%7+week)%7;
+				week=W;
+			}
+			else if (i == 11)
+			{
+				M="November";
+				W=(31%7+week)%7;
+				week=W;
+			}
+			else if (i == 12)
+			{
+				M="December";
+				W=(30%7+week)%7;
+				week=W;
+			}
+
+			switch(week)
+			{
+				case 1: System.out.println(M+" 1 "+year+" is Monday");break;
+	            case 2: System.out.println(M+" 1 "+year+" is Tuesday");break;
+	            case 3: System.out.println(M+" 1 "+year+" is Wednesday");break;
+	            case 4: System.out.println(M+" 1 "+year+" is Thursday");break;
+	            case 5: System.out.println(M+" 1 "+year+" is Friday");break;
+	            case 6: System.out.println(M+" 1 "+year+" is Saturday");break;
+	            case 0: System.out.println(M+" 1 "+year+" is Sunday");break;
+			}
+
+		}
+
+	}
+}
+
+class Work_29
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		System.out.print("Enter the year and the day of the week on the first day of the year: ");
+		int year = input.nextInt();
+		int week = input.nextInt();
+		String M = "";
+		int W = 0;
+		int n = 0;
+		boolean leap = ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))? true : false;
+		String calendar = "";
+		for (int i = 1; i <= 12; i++)
+		{
+			calendar = "";
+			if (i==1)
+			{
+				M="January";
+				n = 31;
+				for (int j = 1; j < week;j++)
+					calendar +="\t";
+			}
+			else if (i == 2)
+			{
+				M="February";
+				W=(31%7+week)%7;
+				week=W;
+				if (leap)
+					n = 29;
+				else
+					n = 28;
+				for (int j = 1; j < week;j++)
+					calendar +="\t";
+			}
+			else if (i == 3)
+			{
+				M="March";
+				if (leap)
+					W=(29%7+week)%7;
+				else
+					W=(29%7+week)%7;
+				week=W;
+				n = 31;
+				for (int j = 1; j < week;j++)
+					calendar +="\t";
+			}
+			else if (i == 4)
+			{
+				M="February";
+				W=(31%7+week)%7;
+				week=W;
+				n = 30;
+				for (int j = 1; j < week;j++)
+					calendar +="\t";
+			}
+			else if (i == 5)
+			{
+				M="May";
+				W=(30%7+week)%7;
+				week=W;
+				n = 31;
+				for (int j = 1; j < week;j++)
+					calendar +="\t";
+			}
+			else if (i == 6)
+			{
+				M="June";
+				W=(31%7+week)%7;
+				week=W;
+				n = 30;
+				for (int j = 1; j < week;j++)
+					calendar +="\t";
+			}
+			else if (i == 7)
+			{
+				M="July";
+				W=(30%7+week)%7;
+				week=W;
+				n = 31;
+				for (int j = 1; j < week;j++)
+					calendar +="\t";
+			}
+			else if (i == 8)
+			{
+				M="August";
+				W=(31%7+week)%7;
+				week=W;
+				n = 31;
+				for (int j = 1; j < week;j++)
+					calendar +="\t";
+			}
+			else if (i == 9)
+			{
+				M="September";
+				W=(31%7+week)%7;
+				week=W;
+				n = 30;
+				for (int j = 1; j < week;j++)
+					calendar +="\t";
+			}
+			else if (i == 10)
+			{
+				M="October";
+				W=(30%7+week)%7;
+				week=W;
+				n = 31;
+				for (int j = 1; j < week;j++)
+					calendar +="\t";
+			}
+			else if (i == 11)
+			{
+				M="November";
+				W=(31%7+week)%7;
+				week=W;
+				n = 30;
+				for (int j = 1; j < week;j++)
+					calendar +="\t";
+			}
+			else if (i == 12)
+			{
+				M="December";
+				W=(30%7+week)%7;
+				week=W;
+				n = 31;
+				for (int j = 1; j < week;j++)
+					calendar +="\t";
+			}
+
+			for (int z = 1;z<=n;z++)
+			{
+				if ((((z % 7) + week) % 7) == 0)
+					calendar = calendar + z + "\n";
+				else
+					calendar = calendar + z +"\t";
+			}
+
+			System.out.printf("\t\t%s %d\n",M,year);
+			System.out.println("______________________________________________________________");
+			System.out.printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n","Mon","Tue","Wed","Thu","Fri","Sat","Sun");
+			System.out.println(calendar);
+			System.out.println("");
+			
+		}
+	}
+
 }
