@@ -882,8 +882,7 @@ class Work_29
 			{
 				M="January";
 				n = 31;
-				for (int j = 1; j < week;j++)
-					calendar +="\t";
+
 			}
 			else if (i == 2)
 			{
@@ -894,8 +893,8 @@ class Work_29
 					n = 29;
 				else
 					n = 28;
-				for (int j = 1; j < week;j++)
-					calendar +="\t";
+
+
 			}
 			else if (i == 3)
 			{
@@ -903,11 +902,10 @@ class Work_29
 				if (leap)
 					W=(29%7+week)%7;
 				else
-					W=(29%7+week)%7;
+					W=(28%7+week)%7;
 				week=W;
 				n = 31;
-				for (int j = 1; j < week;j++)
-					calendar +="\t";
+
 			}
 			else if (i == 4)
 			{
@@ -915,8 +913,7 @@ class Work_29
 				W=(31%7+week)%7;
 				week=W;
 				n = 30;
-				for (int j = 1; j < week;j++)
-					calendar +="\t";
+
 			}
 			else if (i == 5)
 			{
@@ -924,8 +921,7 @@ class Work_29
 				W=(30%7+week)%7;
 				week=W;
 				n = 31;
-				for (int j = 1; j < week;j++)
-					calendar +="\t";
+
 			}
 			else if (i == 6)
 			{
@@ -933,8 +929,7 @@ class Work_29
 				W=(31%7+week)%7;
 				week=W;
 				n = 30;
-				for (int j = 1; j < week;j++)
-					calendar +="\t";
+
 			}
 			else if (i == 7)
 			{
@@ -942,8 +937,8 @@ class Work_29
 				W=(30%7+week)%7;
 				week=W;
 				n = 31;
-				for (int j = 1; j < week;j++)
-					calendar +="\t";
+
+
 			}
 			else if (i == 8)
 			{
@@ -951,8 +946,7 @@ class Work_29
 				W=(31%7+week)%7;
 				week=W;
 				n = 31;
-				for (int j = 1; j < week;j++)
-					calendar +="\t";
+
 			}
 			else if (i == 9)
 			{
@@ -960,8 +954,7 @@ class Work_29
 				W=(31%7+week)%7;
 				week=W;
 				n = 30;
-				for (int j = 1; j < week;j++)
-					calendar +="\t";
+
 			}
 			else if (i == 10)
 			{
@@ -969,8 +962,7 @@ class Work_29
 				W=(30%7+week)%7;
 				week=W;
 				n = 31;
-				for (int j = 1; j < week;j++)
-					calendar +="\t";
+
 			}
 			else if (i == 11)
 			{
@@ -978,23 +970,29 @@ class Work_29
 				W=(31%7+week)%7;
 				week=W;
 				n = 30;
-				for (int j = 1; j < week;j++)
-					calendar +="\t";
+
 			}
 			else if (i == 12)
 			{
+				System.out.println(week);
 				M="December";
 				W=(30%7+week)%7;
 				week=W;
 				n = 31;
-				for (int j = 1; j < week;j++)
-					calendar +="\t";
 			}
-
+			if (week == 0)
+				for (int j = 1; j < 7;j++)
+						calendar += "\t";
+			else
+				for (int j = 1; j < week;j++)
+						calendar += "\t";
 			for (int z = 1;z<=n;z++)
 			{
-				if ((((z % 7) + week) % 7) == 0)
+				if ((z+(week-1)) % 7  == 0)
+				{
 					calendar = calendar + z + "\n";
+				}
+
 				else
 					calendar = calendar + z +"\t";
 			}
@@ -1009,3 +1007,369 @@ class Work_29
 	}
 
 }
+class Work_30
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		System.out.print("Enter principal and annual interest rate and storage time (month): ");
+		double principal = input.nextDouble();
+		double interest = input.nextDouble();
+		int month = input.nextInt();
+		double balance = 0;
+		double month_interest = (interest / 1200);
+		for (int i=1;i <= month;i++)
+			balance = (principal + balance) * (1 + month_interest);
+		System.out.printf("After %d months, the account balance is: %.3f \n",month,balance);
+	}
+}
+
+class Work_31
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the initial deposit amount: ");
+		double total = input.nextDouble();
+		System.out.print("Enter annual percentage yield: ");
+		double rates = input.nextDouble();
+		System.out.print("Enter maturity period(number of months): ");
+		int month = input.nextInt();
+		System.out.println("Month  CD Value");
+		for (int i = 1;i <= month;i++)
+		{
+			total = total + total * rates / 1200;
+			System.out.printf("%d\t%.2f\n",i,total);
+		}
+	}
+}
+
+class Work_32
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		int lottery = (int)(Math.random() * 100);
+
+		while (lottery % 11 == 0)
+			lottery = (int)(Math.random() * 100);
+		System.out.println(lottery);
+		System.out.print("Enter yo7ur lottery pick (two digites): ");
+		int guess = input.nextInt();
+
+		int lotteryDigit1 = lottery / 10;
+		int lotteryDigit2 = lottery % 10;
+
+		int guessDigit1 = guess / 10;
+		int guessDigit2 = guess % 10;
+		
+		if (guess == lottery)
+			System.out.println("Exact match you win $10,000");
+		else if (guessDigit2 == lotteryDigit1
+			  && guessDigit1 == lotteryDigit2)
+			System.out.println("Exact match you win $3,000");
+		else if (guessDigit1 == lotteryDigit1
+			  || guessDigit1 == lotteryDigit2
+			  || guessDigit2 == lotteryDigit1
+			  || guessDigit2 == lotteryDigit2)
+			System.out.println("Exact match you win $1,000");
+		else
+			System.out.println("Sorry, no match");
+	}
+}
+
+class Work_33
+{
+	public static void main(String[] args)
+	{
+		int sum = 0;
+		System.out.print("The perfect number less than 1000 is: ");
+		for (int i = 1;i<=10000;i++)
+		{
+			sum = 0;
+			for (int j = 1;j < i;j++)
+			{
+				if (i % j == 0)
+					sum += j;
+
+			}
+			if (sum == i)
+				System.out.print(i + " ");
+		}
+		System.out.println();
+	}
+}
+
+class Work_34
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		int box = 0;
+		int guess = 0;
+		int boxw = 0;
+		int guessw = 0;
+		do
+		{
+			System.out.print("scissor (0), rock (1), paper (2): ");
+			guess = input.nextInt();
+			box = (int)(Math.random() * 3);
+			switch (guess)
+			{
+				case 0:
+					if (box == 0)
+					{
+						System.out.println("The computer is scissor. You are scissor too. It is a draw");
+						guessw = 0;
+						boxw = 0;
+					}
+					else if (box == 1)
+					{
+						System.out.println("The computer is rock You are scissor . You lose");
+						guessw = 0;
+						boxw += 1;				
+					}
+					else
+					{
+						System.out.println("The computer is paper You are scissor . You win");
+						guessw += 1;
+						boxw = 0;
+					}
+					break;
+
+				case 1:
+					if (box == 1)
+					{
+						System.out.println("The computer is rock. You are rock too. It is a draw");
+						guessw = 0;
+						boxw = 0;
+					}
+					else if (box == 2)
+					{
+						System.out.println("The computer is paper. You are rock. You lose");
+						guessw = 0;
+						boxw += 1;
+					}
+					else
+					{
+						System.out.println("The computer is scissor. You are rock. You win");
+						guessw += 1;
+						boxw = 0;
+					}
+					break;
+				case 2:
+					if (box == 2)
+					{
+						System.out.println("The computer is paper. You are paper too. It is a draw");
+						guessw = 0;
+						boxw = 0;
+					}
+					else if (box == 0)
+					{
+						System.out.println("The computer is scissor. You are paper . You lose");
+						guessw = 0;
+						boxw += 1;	
+					}
+					else
+					{
+						System.out.println("The computer is rock. You are paper . You win");
+						guessw += 1;
+						boxw = 0;
+					}
+
+			}
+			System.out.println("box: "+ boxw + " guess: " + guessw);
+
+
+		}while (boxw < 2 && guessw < 2);
+		if (boxw > guessw)
+			System.out.println("Computer won");
+		else
+			System.out.println("You won");
+
+	}
+}
+
+class Work_35
+{
+	public static void main(String[] args)
+	{
+		double sum = 0;
+		for (int i = 1;i <= 624;i++)
+		{
+			sum += 1 / (i + Math.sqrt(i+1));
+		}
+		System.out.println("And for the " + sum);
+	}
+}
+
+class Work_36
+{
+	public static void main(String[] args) 
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the first 9 digits of an ISBN as integer: ");
+		String digits = input.nextLine();
+
+		int sum = 0;
+
+		for (int i = 0;i <= 8;i++)
+			sum += (digits.charAt(i)-'0') * (i +1);		
+
+		int d10 = sum % 11;
+
+		if (d10 == 10)
+			System.out.println("The ISBN-10 number is " + digits +  "x");
+		else
+			System.out.println("The ISBN-10 number is " + digits + d10);
+	}
+}
+
+class Work_37
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a decimal number: ");
+		int number = input.nextInt();
+		String binary = "";
+		while (number > 0)
+		{
+			binary = number % 2 + binary;
+			number = number / 2;
+		}
+		System.out.println("Binary for: " + binary);
+	}
+}
+class Work_38
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a decimal number: ");
+		int number = input.nextInt();
+		String octal = "";
+		while (number > 0)
+		{
+			octal = number % 8 + octal;
+			number = number / 8;
+		}
+		System.out.println("octal for: " + octal);
+	}
+}
+
+class Work_39
+{
+	public static void main(String[] args)
+	{
+		final int BASIC_SALARY = 5000;
+		final double GROWTH = 0.01;
+		double wages = 0;//工资
+		double sales = 0;//销售额
+		double commission = 0;//提成
+		while(wages < 30000)
+		{
+			wages = 0;	
+			sales += GROWTH;
+			if (sales > 10000)
+				commission = 5000 * 0.08 + 5000 * 0.1 + (sales - 10000) * 0.12;
+			else if (sales < 10000 && sales >= 5000)
+				commission = 5000 * 0.08 + (sales - 5000) * 0.1;
+			else
+				commission = sales * 0.08;
+			wages = wages + BASIC_SALARY + commission;
+		}
+
+		System.out.printf("The minimum annual sales volume of 30000 is %.3f\n",sales);
+	}
+}
+class Work_40
+{
+	public static void main(String[] args)
+	{
+		int positive = 0;
+		int reverse = 0;
+		int r = 0;
+		for (int i = 0;i<=100000;i++)
+		{
+			r = (int)(Math.random() * 2);
+			if (r==0)
+				positive++;
+			else
+				reverse++;
+		}
+		System.out.println("positive: " + positive);
+		System.out.println("reverse: " + reverse);
+
+	}
+}
+class Work_41
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter numbers: ");
+		String numbers = input.nextLine();
+
+		char max=' ';
+		int count = 1;
+
+		for (int i = 0;i < numbers.length();i++)
+		{
+			if (max < numbers.charAt(i))
+			{
+				max = numbers.charAt(i);
+				count = 1;
+						
+			}
+			else if (max == numbers.charAt(i))
+			{
+				count++;
+			}
+		}
+
+		System.out.println("The largest number is " + max);
+		System.out.println("The occurrence count of the largest number is " + count);
+	}
+}
+
+class Work_42
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		final int BASIC_SALARY = 5000;
+		final double GROWTH = 0.01;
+		System.out.print("Enter the expected commission: ");
+		double commission_sought = input.nextDouble();//期望提成
+		double commission = 0;//提成
+		double sales = 0;//销售额
+		for (sales = 0.01;commission <= commission_sought; sales +=0.01)
+		{
+			if (sales > 10000)
+				commission = 5000 * 0.08 + 5000 * 0.1 + (sales - 10000) * 0.12;
+			else if (sales < 10000 && sales >= 5000)
+				commission = 5000 * 0.08 + (sales - 5000) * 0.1;
+			else
+				commission = sales * 0.08;
+
+		}
+
+		System.out.printf("The minimum annual sales volume of 30000 is %.3f\n",sales);
+	}
+}
+
+
+
+
+
+
+
+
