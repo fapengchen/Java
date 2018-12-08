@@ -1270,9 +1270,9 @@ class Work_39
 	{
 		final int BASIC_SALARY = 5000;
 		final double GROWTH = 0.01;
-		double wages = 0;//工资
-		double sales = 0;//销售额
-		double commission = 0;//提成
+		double wages = 0;
+		double sales = 0;
+		double commission = 0;
 		while(wages < 30000)
 		{
 			wages = 0;	
@@ -1348,9 +1348,9 @@ class Work_42
 		final int BASIC_SALARY = 5000;
 		final double GROWTH = 0.01;
 		System.out.print("Enter the expected commission: ");
-		double commission_sought = input.nextDouble();//期望提成
-		double commission = 0;//提成
-		double sales = 0;//销售额
+		double commission_sought = input.nextDouble();
+		double commission = 0;
+		double sales = 0;
 		for (sales = 0.01;commission <= commission_sought; sales +=0.01)
 		{
 			if (sales > 10000)
@@ -1366,10 +1366,220 @@ class Work_42
 	}
 }
 
+class Work_43
+{
+	public static void main(String[] args)
+	{
+		int count = 0;
+		for (int i =1;i<= 7;i++)
+		{
+			for (int j = 1;j<=7;j++)
+			{
+				if (i!=j)
+				{
+					System.out.printf("%d\t%d\n",i,j);
+					count++;		
+				}
+
+			}	
+		}
+		System.out.println("The total number of all combinations is " + count);
+	}
+}
+
+class Work_44
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter an integer: ");
+		int integer = input.nextInt();
+		
+		System.out.print("The bits are ");
+
+		int mask = 1;
+		for (int i = 15;i >= 0;i--)
+		{
+			int temp = integer >> i;
+			int bit = temp & mask;
+			System.out.print(bit);
+		}
+		System.out.println();
+
+	}
+}
+class Work_45
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		
+		System.out.print("Enter ten numbers: ");	
+		double sum = 0;
+		double number = 0;
+		double sum2 = 0;
+		for (int i =0;i<10;i++)
+		{
+			number = input.nextDouble();
+			sum += number;
+			sum2 += number * number;
+		}
+		double mean = sum / 10;
+		double deviation = Math.sqrt((sum2 - ((sum * sum)/10))/9);
+		System.out.println("The mean is " + mean);
+		System.out.println("The standard deviation is " + deviation);
+
+	}
 
 
+}
+class Work_46
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
 
+		System.out.print("Enter a string: ");
+		String s = input.nextLine();
 
+		System.out.print("The reversed string is ");
+		for (int i = s.length()-1;i >= 0;i--)
+		{
+			System.out.print(s.charAt(i));
+		}
+		System.out.println();
+	}
+}
 
+class Work_47
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
 
+		System.out.print("Enter the first 12 digits of an ISBN-13 as a string: ");
+		String numbers = input.nextLine();
+		int sum = 0;
+		int d = 0;
+		if (numbers.length() == 12)
+		{
+			for (int i=1;i <= 12;i++)
+			{
+				if (i % 2 == 0)
+					sum += 3 * (numbers.charAt(i-1) - '0');
+				else
+					sum +=numbers.charAt(i-1) - '0';
+			}
+			d = 10 - sum % 10;
+			if (d == 10)
+				d = 0;
+			System.out.println("The ISBN-13 number is " + numbers + d);
 
+		} 
+		else
+			System.out.println(numbers + " is an invalid input");
+
+	}
+}
+
+class Work_48
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a string: ");
+		String s = input.nextLine();
+		for (int i=1;i<=s.length();i++)
+		{
+			if (i % 2 == 1)
+			{
+				if (s.charAt(i-1) != ' ')
+					System.out.print(s.charAt(i-1));
+			}
+		}
+
+	}
+}
+
+class Work_49
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a string: ");
+		String s = input.nextLine();
+		s = s.toUpperCase();
+		int vcount = 0;
+		int count = 0;
+		char letter;
+		for (int i = 0;i < s.length();i++)
+		{
+			letter = s.charAt(i);
+
+			if (!Character.isLetter(letter))
+				continue;
+			if (letter == 'A' 
+			|| letter == 'E'
+			|| letter == 'I' 
+			|| letter == 'O'
+			|| letter == 'U')
+				vcount += 1;
+			else
+				count += 1;
+		}
+		System.out.println("The number of vowels is " + vcount);
+		System.out.println("The number of consonants is " + count);
+	
+	}
+}
+
+class Work_50
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a string: ");
+		String s = input.nextLine();
+
+		int ucount = 0;
+		char letter;
+		for (int i = 0;i < s.length();i++)
+		{
+			letter = s.charAt(i);
+			if (letter >= 'A' && letter <= 'Z')
+				ucount +=1;
+		} 
+		System.out.println("The number of uppercase letters is " + ucount);
+	}
+}
+
+class Work_51
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the first string: ");
+		String s1 = input.nextLine();
+
+		System.out.print("Enter the second string: ");
+		String s2 = input.nextLine();
+		int n = (s1.length() > s2.length())? s2.length():s1.length();
+		String s = "";
+		int i = 0;
+		while(s1.charAt(i) == s2.charAt(i))
+		{
+			s += s1.charAt(i);
+			i++;
+		}
+
+		if (s=="")
+			System.out.println("Atlanta and Macon have no common prefix");
+		else
+			System.out.println("The common prefix is " + s);
+	}
+}
