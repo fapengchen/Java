@@ -629,36 +629,129 @@ class Work_21
 {
 	public static void main(String[] args)
 	{
+		Scanner input = new Scanner(System.in);
+		System.out.print("Enter a string: ");
+		String s = input.nextLine();
 
+		char ch;
+		String s1 = "";
+		for (int i = 0;i < s.length();i++)
+		{
+			ch = s.charAt(i);
+			if (getNumber(ch) >= 0)
+				s1 += getNumber(ch);
+			else
+				s1 += s.charAt(i);
+		}
+		System.out.println(s1);
 	}
 
 	public static int getNumber(char uppercaseLetter)
 	{
-		if (Character.isDigit(ch))
+		if (Character.isDigit(uppercaseLetter))
 			return uppercaseLetter - '0';
-		else if (Character.isLetter(ch))
+		else if (Character.isLetter(uppercaseLetter))
 		{
-			if (uppercaseLetter == 'a' || uppercaseLetter == 'a' || uppercaseLetter == 'a')
-				return 2
-			if (uppercaseLetter == 'a' || uppercaseLetter == 'a' || uppercaseLetter == 'a')
-				return 2
-			if (uppercaseLetter == 'a' || uppercaseLetter == 'a' || uppercaseLetter == 'a')
-				return 2
-			if (uppercaseLetter == 'a' || uppercaseLetter == 'a' || uppercaseLetter == 'a')
-				return 2
-			if (uppercaseLetter == 'a' || uppercaseLetter == 'a' || uppercaseLetter == 'a')
-				return 2
-			if (uppercaseLetter == 'a' || uppercaseLetter == 'a' || uppercaseLetter == 'a')
-				return 2
-			if (uppercaseLetter == 'a' || uppercaseLetter == 'a' || uppercaseLetter == 'a')
-				return 2
-			if (uppercaseLetter == 'a' || uppercaseLetter == 'a' || uppercaseLetter == 'a')
-				return 2
-		}
-		else
-		{
-			return -1;
+			char ch = Character.toLowerCase(uppercaseLetter);
+			if (ch == 'a' || ch == 'b' || ch == 'c')
+				return 2;
+			if (ch == 'd' || ch == 'e' || ch == 'f')
+				return 3;
+			if (ch == 'g' || ch == 'h' || ch == 'i')
+				return 4;
+			if (ch == 'j' || ch == 'k' || ch == 'l')
+				return 5;
+			if (ch == 'm' || ch == 'n' || ch == 'o')
+				return 6;
+			if (ch == 'p' || ch == 'q' || ch == 'r'
+				|| ch == 's')
+				return 7;
+			if (ch == 't' || ch == 'u' || ch == 'v')
+				return 8;
+			if (ch == 'w' || ch == 'x' || ch == 'y' 
+				|| ch == 'z')
+				return 9;
 		}
 
+	return -1;
+
 	}
+}
+
+class Work_22
+{
+	public static void main(String[] args)
+	{
+		System.out.println(sqrt(1111));
+	}
+	public static double sqrt(long n)
+	{
+		final double APPROX = 0.0001;
+		double lastGuess = 1;
+		double nextGuess = 0;
+
+		while(Math.abs(nextGuess*nextGuess - n) > 0)
+		{
+			nextGuess = (lastGuess + n / lastGuess) / 2;
+			lastGuess = nextGuess;
+		}
+		return nextGuess;
+	}
+}
+
+class Work_23
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Input string: ");
+		String str = input.nextLine();
+
+		System.out.print("Enter the character to view: ");
+		String s=input.nextLine(); 
+		char a = s.charAt(0);
+
+		System.out.println(a + " appears " +  count(str,a) + " times");
+	}
+
+	public static int count(String str,char a)
+	{
+		int count = 0;
+		for (int i = 0;i < str.length();i++)
+		{
+			if (str.charAt(i) == a)
+				count++;
+		}
+		return count;
+	}
+}
+
+class Work_24
+{
+	public static void main(String[] args)
+	{
+
+	}
+
+	public static void ShowCurrentTime()
+	{
+		long totalMilliseconds = System.currentTimeMillis();
+
+		long totalSeconds = totalMilliseconds / 1000;
+
+		long currentSecond = totalSeconds % 60;
+
+		long totalMinutes = totalSeconds / 60;
+
+		long currentMinute = totalMinutes % 60;
+
+		long totalHours = totalMinutes / 60;
+
+		long currentHour = totalHours % 24;
+		System.out.println("Current time is " + currentHour + ":"
+			+ currentMinute + ":" + currentSecond + "GMT");
+	}
+
+}
 }
