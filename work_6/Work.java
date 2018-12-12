@@ -731,11 +731,12 @@ class Work_24
 {
 	public static void main(String[] args)
 	{
-
+		ShowCurrentTime();
 	}
 
 	public static void ShowCurrentTime()
 	{
+
 		long totalMilliseconds = System.currentTimeMillis();
 
 		long totalSeconds = totalMilliseconds / 1000;
@@ -746,12 +747,699 @@ class Work_24
 
 		long currentMinute = totalMinutes % 60;
 
-		long totalHours = totalMinutes / 60;
+		long totalHours = totalMinutes / 60 + 8;
 
 		long currentHour = totalHours % 24;
-		System.out.println("Current time is " + currentHour + ":"
-			+ currentMinute + ":" + currentSecond + "GMT");
+
+		long totalDays = totalHours / 24 + 1;
+
+		int year = 1970;
+
+		while (totalDays > 366)
+		{
+			if (isLeapYear(year))
+				totalDays -= 366;
+			else
+				totalDays -= 365;
+			year++;
+
+		}
+
+		int month = 1;
+		while (totalDays > 30)
+		{	
+			if (month == 1 || 
+				month == 3 ||
+				month == 5 ||
+				month == 7 ||
+				month == 8 ||
+				month == 10 ||
+				month == 12 )
+				totalDays -= 31;
+			else if (month == 2)
+			{
+				if (isLeapYear(year))
+					totalDays -= 29;
+				else
+					totalDays -= 28;
+			}
+			else
+				totalDays -= 30; 
+			month++;
+		}
+		System.out.println(totalDays);
+		System.out.println("Current time is " + year + "year " + month + "month " + 
+		totalDays + "Day " + currentHour + ":"+ currentMinute + ":" + currentSecond + "GMT");
+	}
+
+	public static boolean isLeapYear(int year)
+	{
+		return year % 400 == 0|| (year % 4 == 0 && year % 100 != 0);
+	}
+
+
+}
+
+class Work_25
+{
+	public static void main(String[] args)
+	{
+		System.out.println(convertMillis(5500));
+		System.out.println(convertMillis(100000));
+		System.out.println(convertMillis(555550000));
+	}
+	public static String convertMillis(long millis)
+	{
+		long totalSeconds = millis / 1000;
+
+		long currentSecond = totalSeconds % 60;
+
+		long totalMinutes = totalSeconds / 60;
+
+		long currentMinute = totalMinutes % 60;
+
+		long totalHours = totalMinutes / 60 ;
+
+		long currentHour = totalHours % 24;
+
+		return totalHours + ":" + currentMinute + ":" + currentSecond;
+	}
+}
+
+class Work_26
+{
+	public static void main(String[] args)
+	{
+		final int FIXED_THE_NUMBER_OF_ROWS = 10;
+		int n = 2;
+		int count = 0;
+		while (count <= 100)
+		{
+			if (isPalindromePrimes(n))
+			{
+				count++;
+				if (count % FIXED_THE_NUMBER_OF_ROWS == 0)
+					System.out.println(n);
+				else
+					System.out.print(n + " ");
+			}
+			n++;
+		}
+	}	
+	public static boolean isPalindromePrimes(int num)
+	{
+		return isprime(num) && (num == reverse(num));
+	}
+	public static boolean isprime(int num)
+	{
+		for (int i=2;i <= num / 2;i++)
+		{
+			if (num % i == 0)
+				return false;
+		}
+		return true;
+	}
+	public static int reverse(int number)
+	{
+		int sum = 0;
+		while(number > 0)
+		{
+			
+			if (number < 10)
+				sum = (sum + number % 10);
+			else
+				sum = (sum + number % 10) * 10;
+
+			number /= 10;
+		}
+
+		return sum;
+	}
+}
+class Work_27
+{
+	public static void main(String[] args)
+	{
+		final int FIXED_THE_NUMBER_OF_ROWS = 10;
+		int n = 2;
+		int count = 0;
+		while (count <= 100)
+		{
+			if (isPalindromePrimes(n))
+			{
+				count++;
+				if (count % FIXED_THE_NUMBER_OF_ROWS == 0)
+					System.out.println(n);
+				else
+					System.out.print(n + " ");
+			}
+			n++;
+		}
+	}	
+	public static boolean isPalindromePrimes(int num)
+	{
+		return isprime(num) && isprime(reverse(num)) && num != reverse(num);
+	}
+	public static boolean isprime(int num)
+	{
+		for (int i=2;i <= num / 2;i++)
+		{
+			if (num % i == 0)
+				return false;
+		}
+		return true;
+	}
+	public static int reverse(int number)
+	{
+		int sum = 0;
+		while(number > 0)
+		{
+			
+			if (number < 10)
+				sum = (sum + number % 10);
+			else
+				sum = (sum + number % 10) * 10;
+
+			number /= 10;
+		}
+
+		return sum;
+	}
+}
+
+class Work_28
+{
+	public static void main(String[] args)
+	{
+		System.out.println("p\t\t\t2^p-1");
+		int n = 2;
+		int count = 0;
+		int mason = 0;
+		while (mason < 31)
+		{
+			mason = isMason(n);
+			if (mason > -1)
+			{
+				System.out.println(n + "\t\t\t" + mason);
+			}
+			n++;
+		}
+	}
+	public static int isMason(int num)
+	{
+		if (isprime(num) && isprime(Mason(num)))
+			return Mason(num);
+		else
+			return -1;
+	}
+	public static boolean isprime(int num)
+	{
+		for (int i=2;i <= num / 2;i++)
+		{
+			if (num % i == 0)
+				return false;
+		}
+		return true;
+	}
+	public static int Mason(int num)
+	{
+		return (int)Math.pow(2,num) - 1;
+	}
+}
+
+class Work_29
+{
+	public static void main(String[] args)
+	{
+		int n = 2;
+		String p="";
+		while (n < 1000)
+		{
+			p = pairssPrime(n);
+			if (!p.equals(""))
+				System.out.println(p);
+			n++;
+		}
+	}
+
+	public static String pairssPrime(int num)
+	{
+		String s = "";
+		if (isprime(num) && isprime(num+2))
+			s = "(" + num+" " + (num+2) +")";
+		return s;
+	}
+	public static boolean isprime(int num)
+	{
+		for (int i=2;i <= num / 2;i++)
+		{
+			if (num % i == 0)
+				return false;
+		}
+		return true;
+	}
+}
+
+class Work_30
+{
+	public static void main(String[] args)
+	{
+		gambling();
+	}
+	public static void gambling()
+	{
+		int sum = rollSum();
+		boolean win = false;
+		if (sum == 7 || sum == 11)
+			win = true;
+		else if (sum == 2 ||sum == 3 ||sum == 12)
+			win = false;
+		else
+			win = keepRoollDice();
+
+		if (win)
+			System.out.println("You win");
+		else
+			System.out.println("You lose");
+	}
+	public static int rollDice()
+	{
+		return 1 + (int)(Math.random() * 6);
+	}
+	public static int rollSum()
+	{
+		int num1 = rollDice();
+		int num2 = rollDice();
+		int sum = num1 + num2;
+		System.out.printf("You rolled %d + %d = %d\n" ,num1,num2,sum);
+		return sum;
+	}
+	public static boolean keepRoollDice()
+	{
+		Scanner input = new Scanner(System.in);
+		System.out.print("Point is ");
+		int ask = input.nextInt();
+		int sum = 0;
+		do
+		{
+			sum = rollSum();
+		}while(sum != 7 && sum != ask);
+
+		return (sum == ask)?true:false;
+
 	}
 
 }
+
+class Work_31
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		System.out.print("Enter a credit card number as a long integer: ");
+		long l = input.nextLong();
+
+		if (isValid(l))
+			System.out.println(l + " is valid");
+		else
+			System.out.println(l + " is invalid");
+	}
+	public static boolean isValid(long number)
+	{
+		int sum1 = 0;
+		int sum2 = 0;
+		if (getSize(number) < 13 || getSize(number) > 16)
+		{
+			System.out.println(0);
+			return false;
+		}
+
+		else if (!prefixMatched(number,4) &&
+		    !prefixMatched(number,5) &&
+		    !prefixMatched(number,37) &&
+		    !prefixMatched(number,6))
+		{
+		    return false;
+		}
+		else
+		{
+			sum1 = sumOfDoubleEvenPlace(number);
+			sum2 = sumOfOddPlace(number);
+			if ((sum1 + sum2) % 10 == 0)
+				return true;
+			return false;
+		}
+	}
+	public static int sumOfDoubleEvenPlace(long number)
+	{
+		int sum = 0;
+		String s = number + "";
+		int d = 0;
+		for (int i = 0;i < s.length();i++)
+		{
+			if (i % 2 == 0)
+			{
+				d = s.charAt(i) - '0';
+				sum += getDigit(d*2);				
+			}
+
+		}
+		return sum;
+	}
+	public static int getDigit(int number)
+	{
+		int sum = 0;
+		if (number < 10)
+			return number;
+		else
+		{	while(number > 0)
+			{
+				sum = sum + number % 10;
+				number = number / 10;
+			}
+
+			return sum;
+		}
+	}
+	public static int sumOfOddPlace(long number)
+	{
+		String snumber = number+"";
+		int sum = 0;
+		for (int i = 0;i < snumber.length();i++)
+		{
+			if (i % 2 == 1)
+			sum += snumber.charAt(i) - '0';
+		}
+		return sum;
+	}
+	public static boolean prefixMatched(long number, int d)
+	{
+		return ((number+"").startsWith(d+""));
+	}
+	public static int getSize(long d)
+	{
+		return (d+"").length();
+	}
+	public static long getPrefix(long number, int k)
+	{
+		return Integer.parseInt((number+"").substring(0,k));
+	}
+}
+
+class Work_32
+{
+	public static void main(String[] args)
+	{
+		int count = 0;
+		for (int i = 0;i < 1000;i++)
+		{
+			if (gambling())
+				count++;
+		}
+		System.out.println("You win:" + count);
+	}
+	public static boolean gambling()
+	{
+		int sum = rollSum();
+		boolean win = false;
+		if (sum == 7 || sum == 11)
+			win = true;
+		else if (sum == 2 ||sum == 3 ||sum == 12)
+			win = false;
+		else
+			win = keepRoollDice();
+
+		return win;
+	}
+	public static int rollDice()
+	{
+		return 1 + (int)(Math.random() * 6);
+	}
+	public static int rollSum()
+	{
+		int num1 = rollDice();
+		int num2 = rollDice();
+		int sum = num1 + num2;
+		System.out.printf("You rolled %d + %d = %d\n" ,num1,num2,sum);
+		return sum;
+	}
+	public static boolean keepRoollDice()
+	{
+		int ask = rollSum();
+		System.out.println("Point is " + ask);
+		int sum = 0;
+		do
+		{
+			sum = rollSum();
+		}while(sum != 7 && sum != ask);
+
+		return (sum == ask)?true:false;
+
+	}
+
+}
+class Work_33
+{
+	public static void main(String[] args)
+	{
+		ShowCurrentTime();
+	}
+	public static void ShowCurrentTime()
+	{
+
+		long totalMilliseconds = System.currentTimeMillis();
+
+		long totalSeconds = totalMilliseconds / 1000;
+
+		long currentSecond = totalSeconds % 60;
+
+		long totalMinutes = totalSeconds / 60;
+
+		long currentMinute = totalMinutes % 60;
+
+		long totalHours = totalMinutes / 60 + 8;
+
+		long currentHour = totalHours % 24;
+
+		long totalDays = totalHours / 24 + 1;
+
+		int year = 1970;
+
+		while (totalDays > 366)
+		{
+			if (isLeapYear(year))
+				totalDays -= 366;
+			else
+				totalDays -= 365;
+			year++;
+
+		}
+
+		int month = 1;
+		while (totalDays > 30)
+		{	
+			if (month == 1 || 
+				month == 3 ||
+				month == 5 ||
+				month == 7 ||
+				month == 8 ||
+				month == 10 ||
+				month == 12 )
+				totalDays -= 31;
+			else if (month == 2)
+			{
+				if (isLeapYear(year))
+					totalDays -= 29;
+				else
+					totalDays -= 28;
+			}
+			else
+				totalDays -= 30; 
+			month++;
+		}
+		System.out.println("Current date and time is " + getMonthName(month) +" "+ totalDays+ " ,"+ 
+		year + " " + currentHour + ":"+ currentMinute + ":" + currentSecond);
+	}
+	public static String getMonthName(int month)
+	{
+		String monthName = "";
+		switch(month) 
+		{
+			case 1: monthName = "January"; break;
+			case 2: monthName = "February"; break;
+			case 3: monthName = "March"; break;
+			case 4: monthName = "April"; break;
+			case 5: monthName = "May"; break;
+			case 6: monthName = "June"; break;
+			case 7: monthName =  "July"; break;
+			case 8: monthName = "August"; break;
+			case 9: monthName = "September"; break;
+			case 10: monthName = "October"; break;
+			case 11: monthName = "November"; break;
+			case 12: monthName = "Decmber";
+		}
+		return monthName;
+	}
+	public static boolean isLeapYear(int year)
+	{
+		return year % 400 == 0|| (year % 4 == 0 && year % 100 != 0);
+	}
+}
+
+class Work_34
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("ENter full year (e.g., 2012): ");
+		int year = input.nextInt();
+
+		System.out.print("ENter month as a number between 1 and 12: ");
+		int month = input.nextInt();
+
+		printMonth(year, month);
+	}
+	public static void printMonth(int year,int month)
+	{
+		printMonthTitle(year,month);
+		printMonthBody(year,month);
+	}
+	public static void printMonthTitle(int year,int month)
+	{
+		System.out.println("          " + getMonthName(month)
+			+ " " + year);
+		System.out.println("---------------------------------");
+		System.out.println(" Sun Mon Tue Wed Thu Fri Sat");
+	}
+	public static String getMonthName(int month)
+	{
+		String monthName = "";
+		switch(month) 
+		{
+			case 1: monthName = "January"; break;
+			case 2: monthName = "February"; break;
+			case 3: monthName = "March"; break;
+			case 4: monthName = "April"; break;
+			case 5: monthName = "May"; break;
+			case 6: monthName = "June"; break;
+			case 7: monthName =  "July"; break;
+			case 8: monthName = "August"; break;
+			case 9: monthName = "September"; break;
+			case 10: monthName = "October"; break;
+			case 11: monthName = "November"; break;
+			case 12: monthName = "Decmber";
+		}
+		return monthName;
+	}
+	public static void printMonthBody(int year, int month)
+	{
+		int startDay = getStartDay(year, month);
+
+		int numberOfDaysInMonth = getNumberOfDaysInMonth(year, month);
+
+		int i = 0;
+		for (i = 0; i < startDay;i++)
+			System.out.print("    ");
+
+		for (i = 1; i <= numberOfDaysInMonth;i++)
+		{
+			System.out.printf("%4d",i);
+
+			if ((i + startDay) % 7 == 0)
+				System.out.println();
+		}
+	}
+	public static int getStartDay(int year,int month)
+	{
+		int m = 0;
+		int q = 1;
+		if (month == 1|| month == 2)
+		{
+			m = (month == 1)?13:14;
+			year -= 1;
+		}
+		else
+			m = month;
+		int j = (int)(Math.abs(year / 100));
+		int k = (int)year % 100;
+		int h = (q + (26 * (m + 1) / 10) + k + k / 4 + j / 4 + 5 * j) % 7;
+
+		return h;
+	}
+	public static int getNumberOfDaysInMonth(int year,int month)
+	{
+		if (month == 1|| month == 3 || month == 5 || month == 7 ||
+			month == 8|| month == 10 || month == 12)
+			return 31;
+		if (month == 4 || month == 6 || month == 9 || month == 11)
+			return 30;
+		if (month == 2) return isLeapYear(year) ? 29: 28;
+		return 0;
+	}
+	public static boolean isLeapYear(int year)
+	{
+		return year % 400 ==0 || (year % 4 == 0 && year % 100 != 0);
+	}
+}
+class Work_35
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the side: ");
+		double side = input.nextDouble();
+
+		System.out.println("The area of the pentagon is " + area(side));
+	}
+	public static double area(double side)
+	{
+		return (5 * side * side) / (4 * Math.tan(Math.PI/5));
+	}
+}
+
+class Work_36
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the number of sides: ");
+		int n = input.nextInt();
+
+		System.out.print("Enter the side: ");
+		double side = input.nextDouble();
+
+
+		System.out.println("The area of the polygon is " + area(n,side));
+	}
+	public static double area(int n, double side)
+	{
+		return (n * side * side) / (4 * Math.tan(Math.PI/5));
+	}
+}
+
+class Work_37
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		System.out.print("Enter number and character width: ");
+		int number = input.nextInt();
+		int width = input.nextInt();
+
+		System.out.println(format(number,width));
+	}
+	public static String format(int number, int width)
+	{
+		String s = number + "";
+		if (s.length() > width)
+			return s;
+		width = width - s.length();
+		while (width > 0)
+			s = '0' + s;
+			width--;
+		return s;
+	}
 }
