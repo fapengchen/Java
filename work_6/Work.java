@@ -1437,9 +1437,101 @@ class Work_37
 		if (s.length() > width)
 			return s;
 		width = width - s.length();
-		while (width > 0)
+		for (int i = 0;i < width;i++)
 			s = '0' + s;
-			width--;
 		return s;
+	}
+}
+class Work_38
+{
+	public static void main(String[] args)
+	{
+		int count = 1;
+
+		while (count <= 100)
+		{
+			if (count % 10 == 0)
+				System.out.println(getRandomCharacter('A','Z'));
+			else
+				System.out.print(getRandomCharacter('A','Z'));
+			count++;
+		}
+		System.out.println();
+		count = 1;
+		while (count <= 100 )
+		{
+			if (count % 10 == 0)
+				System.out.println(getRandomCharacter('0','9'));
+			else
+				System.out.print(getRandomCharacter('0','9'));
+			count++;
+		}
+	}
+	public static char getRandomCharacter(char ch1,char ch2)
+	{
+		return (char)(ch1 + Math.random() * (ch2 - ch1 + 1));
+	}
+
+	public static char getRandomLowerCaseLetter()
+	{
+		return getRandomCharacter('a','z');
+	}
+
+	public static char getRandomUppercaseLetter()
+	{
+		return getRandomCharacter('A','Z');
+
+	}
+	public static char getRandomDigitCharacter()
+	{
+		return getRandomCharacter('0','9');
+	}
+	public static char getRandomCharacter()
+	{
+		return getRandomCharacter('\u0000','\uFFFF');
+	}
+}
+
+class Work_39
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter three points for p0, p1, and p2: ");
+		double x0 = input.nextDouble();
+		double y0 = input.nextDouble();
+		double x1 = input.nextDouble();
+		double y1 = input.nextDouble();
+		double x2 = input.nextDouble();
+		double y2 = input.nextDouble();
+
+		if (leftOfTheLine(x0,y0,x1,y1,x2,y2))
+				System.out.println("(" + x2 +"," + y2 +") is on the left side of the line from (" + 
+								x0 + ", " + y0 + ") to (" + x1 + ", " + y1 + ")");
+		else if (ontheSameLine(x0,y0,x1,y1,x2,y2))
+			System.out.println("(" + x2 +"," + y2 +") is on the line from (" + 
+								x0 + ", " + y0 + ") to (" + x1 + ", " + y1 + ")");
+		else if (onTheLineSegment(x0,y0,x1,y1,x2,y2))
+			System.out.println("(" + x2 +"," + y2 +") is on the right side of the line from (" + 
+								x0 + ", " + y0 + ") to (" + x1 + ", " + y1 + ")");
+	}
+
+	public static boolean leftOfTheLine(double x0, double y0,
+		double x1, double y1, double x2, double y2)
+	{
+		return ((x1 - x0) * (y2 - y0) - (x2 - x0) * (y1 - y0) > 0);
+	}
+
+	public static boolean ontheSameLine(double x0, double y0,
+		double x1, double y1, double x2, double y2)
+	{
+		return ((x1 - x0) * (y2 - y0) - (x2 - x0) * (y1 - y0) == 0);
+	}
+
+	public static boolean onTheLineSegment(double x0, double y0, 
+		double x1, double y1,double x2, double y2)
+	{
+		return ((x1 - x0) * (y2 - y0) - (x2 - x0) * (y1 - y0) < 0);
 	}
 }
