@@ -566,3 +566,243 @@ class Work_14
 		return n;
 	}
 }
+
+class Work_15
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter ten numbers: ");
+		int[] numbers = new int[10];
+
+		for (int i = 0; i < numbers.length;i++)
+		{
+			numbers[i] = input.nextInt();
+		}
+
+		numbers = eliminateDuplicates(numbers);
+
+		System.out.print("The distinct numbers: ");
+		for (int i = 0;i<numbers.length;i++)
+		{
+			if (numbers[i] != 0)
+				System.out.print(numbers[i] + " ");
+		}
+	}
+	public static int[] eliminateDuplicates(int[] list)
+	{
+		int[] list2 = new int[list.length];
+		int n = 0;
+		boolean flag = true;
+		for (int i = 0;i <  list.length;i++)
+		{
+			flag = true;
+			for (int j = 0;j < list2.length;j++)
+			{
+				if (list[i] == list2[j])
+					flag = false;
+			}
+			if (flag)
+			{
+				list2[n] = list[i];
+				n++;
+			}
+		}
+		return list2;
+	}
+}
+
+class Work_16
+{
+	public static void main(String[] args)
+	{
+		int[] chiliadRandom = new int[100000];
+		for (int i = 0;i < chiliadRandom.length;i++)
+		{
+			chiliadRandom[i] = (int)(Math.random() * 1000000);
+		}
+		long startTime = System.currentTimeMillis();
+		int linear = linearSearch(chiliadRandom, 325);
+		long endTime = System.currentTimeMillis();
+		long executionTime = endTime - startTime;
+		System.out.println("linearSearch: " + linear + " Time: " + executionTime);
+		
+		startTime = System.currentTimeMillis();
+		selectionSort(chiliadRandom);
+		int binary = binarySearch(chiliadRandom, 325);
+		endTime = System.currentTimeMillis();
+		executionTime = endTime - startTime;
+		System.out.println("binarySearch: " + binary + " Time: " + executionTime);
+	}
+	public static int binarySearch(int[] list,int key)
+	{
+		int low = 0;
+		int high = list.length - 1;
+
+		while (low >= high)
+		{
+			int mid = (high + low) / 2;
+			if (key < list[mid])
+				high = mid - 1;
+			else if (key == list[mid])
+				return mid;
+			else
+				low = mid + 1;
+		}
+		return -low - 1;
+	}
+	public static int linearSearch(int[] list,int key)
+	{
+		for (int i = 0;i < list.length; i++)
+		{
+			if (key == list[i])
+				return i;
+
+		}
+		return -1;
+	}
+	public static void selectionSort(int[] list)
+	{
+		for (int i = 0;i < list.length - 1;i++)
+		{
+			int min = list[i];
+			int minIndex = i;
+			for (int j = i + 1; j < list.length;j++)
+			{
+				if (min > list[j])
+				{
+					min = list[j];
+					minIndex = j;
+				}
+			}
+
+			if (i != minIndex)
+			{
+				list[minIndex] = list[i];
+				list[i] = min;
+			}
+		}
+	}
+}
+
+class Work_17
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the amount of data to be stored: ");
+		int n = input.nextInt();
+		System.out.print("Enter student name and grade: ");
+		String[] students = new String[n];
+		int[] grades = new int[n];
+
+		for (int i = 0;i < n;i++)
+		{
+			students[i] = input.next();
+			grades[i] = input.nextInt();
+		}
+		students_Sort(students,grades);
+		System.out.print("Students ranking: ");
+		for (int i = 0;i < n;i++)
+		{
+			System.out.printf("%s: %d ",students[i],grades[i]);
+		}
+		System.out.println();
+	}
+
+	public static void students_Sort(String[] students,int[] grades)
+	{
+		for (int i = 0;i < grades.length - 1;i++)
+		{
+			int max = grades[i];
+			int maxIndex = i;
+			String maxName = students[i];
+			for (int j = i + 1;j < grades.length;j++)
+			{
+				if (max < grades[j])
+				{
+					max = grades[j];
+					maxIndex = j;
+					maxName = students[j];
+				}
+			}
+			if (i != maxIndex)
+			{
+				grades[maxIndex] = grades[i];
+				grades[i] = max;
+				students[maxIndex] = students[i];
+				students[i] = maxName; 
+			}
+		}
+	}
+}
+
+class Work_18
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		System.out.print("Enter ten double digits: ");
+		double[] numbers = new double[10];
+
+		for (int i = 0;i < numbers.length;i++)
+		{
+			numbers[i] = input.nextDouble();
+		} 
+		bubbling(numbers);
+		for (double e: numbers)
+		{
+			System.out.print(e + " ");
+		}
+	}
+	public static void bubbling(double[] x)
+	{
+		for (int i = 0;i < x.length;i++)
+		{
+			for (int j = 0;j < x.length - 1 - i;j++)
+			{
+				if (x[j] > x[j + 1])
+				{
+					double temp = x[j];
+					x[j] = x[j + 1];
+					x[j + 1] = temp;
+				}
+
+			}
+		}
+	}
+}
+
+class Work_19
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter list: ");
+		int n = input.nextInt();
+		int[] numbers = new int[n];
+		for (int i = 0;i < numbers.length;i++)
+		{
+			numbers[i] = input.nextInt();
+		}
+
+		if (isSorted(numbers))
+			System.out.println("The list is already sorted");
+		else
+			System.out.println("The list is not sorted");
+
+	}
+
+	public static boolean isSorted(int[] list)
+	{
+		for (int i = 0;i < list.length - 1;i++)
+		{
+			if (list[i] > list[i + 1])
+				return false;
+		}
+		return true;
+	}
+}
