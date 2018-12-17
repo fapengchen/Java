@@ -228,3 +228,341 @@ class Work_5
 		return true;
 	} 
 }
+class Work_6 
+{
+	public static void main(String[] args)
+	{
+		int[] numbers = new int[50];
+		final int NUMBER_OF_PRIMES = 50;
+		int count = 0;
+		int number = 2;
+		int i = 0;
+
+		while (count < NUMBER_OF_PRIMES)
+		{
+			boolean isPrime = true;
+
+			for (int divisor = 2; divisor <= Math.sqrt(number) && isPrime;divisor++)
+			{
+				if (number % divisor == 0)
+				{
+					isPrime = false;
+					break;
+				}
+
+			}
+			if (isPrime)
+			{
+				numbers[i] = number;			
+				i++;
+				count++;
+			}
+
+			number++;
+		}
+		for (int e:numbers)
+		{
+			System.out.print(e + " ");
+		}
+		System.out.println();
+	}
+}
+
+class Work_7
+{
+	public static void main(String[] args)
+	{
+		int[] numbers = randomNumber(50);
+		int[] number = numberOccurrences(numbers);
+
+		for (int i = 0; i < number.length;i++)
+		{
+			System.out.printf("%d:%d ",i,number[i]);
+		}
+		System.out.println();
+
+	}
+	public static int[] randomNumber(int n)
+	{
+		int[] numbers = new int[n];
+		for (int i = 0; i < numbers.length; i++)
+		{
+			numbers[i] = (int)(Math.random() * 10);
+		}
+		return numbers;
+	}
+	public static int[] numberOccurrences(int[] numbers)
+	{
+		int[] number = new int[10];
+		for (int i = 0; i < numbers.length;i++)
+		{
+			number[numbers[i]]++;
+		}
+		return number;
+	}
+}
+
+class Work_8
+{
+	public static void main(String[] args)
+	{
+		int[] n1 = {1,3,6,7,3,2,1123,31,23,45,4,3,22};
+		double[] n2 = {1.2,2.45,2.3,2.66,55.33,22.1,22.3};
+
+		int n1_avg = average(n1);
+		double n2_avg = average(n2);
+		System.out.println(n1_avg);
+		System.out.println(n2_avg);
+	}
+	public static int average(int[] array)
+	{
+		int avg = 0;
+		int sum = 0;
+		for (int i = 0;i < array.length;i++)
+		{
+			sum += array[i];
+		}
+		avg = sum / array.length;
+		return avg;
+	}
+	public static double average(double[] array)
+	{
+		int avg = 0;
+		int sum = 0;
+		for (int i = 0;i < array.length;i++)
+		{
+			sum += array[i];
+		}
+		avg = sum / array.length;
+		return avg;
+	}
+}
+
+class Work_9
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter ten numbers: ");
+		double[] numbers = new double[10];
+
+		for (int i = 0; i < numbers.length;i++)
+		{
+			numbers[i] = input.nextDouble();
+		}
+
+		sorting(numbers);
+		System.out.println("The minimum number is: " + numbers[0]);
+	}
+
+	public static void sorting(double[] numbers)
+	{
+		for (int i = 0;i < numbers.length - 1;i++)
+		{
+			double min = numbers[i];
+			int minIndex = i;
+			for (int j = i + 1;j < numbers.length;j++)
+			{
+				if (min > numbers[j])
+				{
+					min = numbers[j];
+					minIndex = j;
+				}
+			}
+			if (minIndex != i)
+			{
+				numbers[minIndex] = numbers[i];
+				numbers[i] = min;
+			}
+		}
+	}
+}
+
+class Work_10
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter ten numbers: ");
+		double[] numbers = new double[10];
+
+		for (int i = 0; i < numbers.length;i++)
+		{
+			numbers[i] = input.nextDouble();
+		}
+
+		int minIndex =  indexOfSmallestElement(numbers);
+		System.out.println("The minimum Index " + minIndex);
+	}
+	public static int indexOfSmallestElement(double[] array)
+	{
+		int minIndex = 0;
+
+		for (int i = 1;i < array.length;i++)
+		{
+			if (array[minIndex] > array[i])
+			{
+				minIndex = i;
+			}
+		}
+		return minIndex;
+	}
+}
+
+class Work_11
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter ten numbers: ");
+		double[] numbers = new double[10];
+		for (int i = 0; i < numbers.length;i++)
+		{
+			numbers[i] = input.nextDouble();
+		}
+		double avg = mean(numbers);
+		double dev = deviation(numbers);
+		System.out.println("The mean is " + ((int)(avg * 100) / 100.0));
+		System.out.printf("The standard deviation is %.5f\n",dev);
+	}
+	public static double deviation(double[] x)
+	{	
+		double sum = 0;
+		double avg = mean(x);
+		double stan_devl = 0;
+
+		for (int i = 0;i < x.length;i++)
+		{
+			sum += (x[i] - avg) * (x[i] - avg); 
+		}
+		stan_devl = Math.sqrt(sum / (x.length - 1));
+		return stan_devl;
+
+	}
+	public static double mean(double[] x)
+	{
+		double avg = 0;
+		double sum = 0;
+
+		for (int i = 0; i < x.length;i++)
+		{
+			sum += x[i];
+		}
+
+		avg = sum / x.length;
+		return avg;
+	}
+}
+
+class Work_12
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter ten numbers: ");
+		int[] numbers = new int[10];
+		for (int i = 0; i < numbers.length;i++)
+		{
+			numbers[i] = input.nextInt();
+		}
+
+		numbers = reverse(numbers);
+		for (int e:numbers)
+		{
+			System.out.print(e + " ");	
+		}
+		System.out.println();
+	}
+
+	public static int[] reverse(int[] x)
+	{
+		int i = 0;
+		int j = x.length - 1;
+		while(i < x.length / 2)
+		{
+			int temp = x[i];
+			x[i] = x[j];
+			x[j] = temp;
+			i++;
+			j--;
+		}
+		return x;
+	}
+}
+
+class Work_13
+{
+	public static void main(String[] args)
+	{
+		int n = getrandom(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19);
+		System.out.println();
+		System.out.println(n);
+	}
+	public static int getrandom(int... numbers)
+	{
+		int n = 0;
+		int flag = 0;
+		while(true)
+		{
+			flag = 0;
+			n = 1 + (int)(Math.random() * 54);
+			for (int e:numbers)
+			{
+				if (e == n)
+					flag = 1;
+			}
+			if (flag != 1)
+				break;
+		}
+		return n;
+	}
+
+}
+class Work_14
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter 5 numbers: ");
+		int[] n = new int[5];
+
+		for (int i = 0; i < n.length;i++)
+		{
+			n[i] = input.nextInt();
+		}
+		int number = gcd(n);
+		System.out.println(number);
+	}
+	public static int gcd(int... numbers)
+	{
+		int n = numbers[0];
+		for (int i = 1; i < numbers.length;i++)
+		{
+			if (n > numbers[i])
+				n = numbers[i];
+		}
+		int conform = 0;
+		boolean flag = false;
+		while(true)
+		{
+			conform = 0;
+			for (int i = 0;i<numbers.length;i++)
+			{
+				if (numbers[i] % n == 0)
+					conform++;
+				else
+					break;
+			}
+			if (conform == numbers.length)
+				break;
+			else
+				n--;
+		}
+		return n;
+	}
+}
