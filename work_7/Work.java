@@ -806,3 +806,254 @@ class Work_19
 		return true;
 	}
 }
+
+class Work_20
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter ten double digits: ");
+		double[] numbers = new double[10];
+
+		for (int i = 0;i < numbers.length;i++)
+		{
+			numbers[i] = input.nextDouble();
+		}
+		sorting(numbers);
+		for (double e:numbers)
+		{
+			System.out.print(e + " ");
+		}
+		System.out.println();
+	}
+	public static void sorting(double[] x)
+	{
+		for (int i = x.length - 1;i > 0;i--)
+		{
+			double max = x[i];
+			int maxIndex = i;
+			for (int j = i - 1;j >= 0;j--)
+			{
+				if (max < x[j])
+				{
+					max = x[j];
+					maxIndex = j;
+				}
+			}
+
+			if (maxIndex != i)
+			{
+				x[maxIndex] = x[i];
+				x[i] = max;
+			}
+		}
+	}
+}
+
+class Work_21
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the number of balls to drop: ");
+		int ball = input.nextInt();//球的个数
+
+		System.out.print("Enter the number of slots in the bean machine: ");
+		int n = input.nextInt();//槽数
+		int[] slots = new int[n];
+		int[] randomlines = new int[n - 1];
+		String[] stringlines = new String[ball];
+		for (int i = 0;i < ball;i++)
+		{
+			randomlines = produceLine(n);
+			stringlines[i] = conversionCircuit(randomlines);
+			slots[placement(randomlines)]++;
+		}
+		System.out.print("\n");
+		for (String e:stringlines)
+		{
+			System.out.println(e);
+		}
+		System.out.print("\n");
+		printBall(slots);
+
+
+	}
+	public static int[] produceLine(int n)
+	{
+		int[] lists = new int[n - 1];
+
+		for (int i = 0;i < lists.length;i++)
+		{
+			int line = (int)(Math.random() * 2);
+			lists[i] = line;
+		}
+		return lists;
+	}
+
+	public static String conversionCircuit(int[] lines)
+	{
+		String whereabouts="";
+		for (int i = 0;i < lines.length;i++)
+		{
+			if (lines[i] == 0)
+				whereabouts += "L";
+			else
+				whereabouts += "R";
+
+		}
+		return whereabouts;
+	}
+	public static int placement(int[] n)
+	{
+		int sum = 0;
+		for (int i = 0; i < n.length;i++)
+		{
+			sum += n[i];
+		}
+		return sum;
+	}
+	public static void printBall(int[] n)
+	{
+		int max = 0;
+		for (int i = 0; i < n.length;i++)
+		{
+			if (n[i] > max)
+				max = n[i];
+		}
+		for (int i = max - 1;i >= 0;i--)
+		{
+			for (int j = 0;j < n.length;j++)
+			{
+				if (i > 0)
+				{
+					if (n[j] > 1)
+					{
+						System.out.print("1");
+						n[j]--;
+
+					}
+					else
+						System.out.print("0");
+				}
+				else if (i == 0)
+				{
+					if (n[j] == 1)
+					{
+						System.out.print("1");
+					}
+					else
+						System.out.print("0");
+				}
+			}
+			System.out.println();
+		}
+
+
+
+	}
+}
+
+class Work_22
+{
+	public static void main(String[] args)
+	{
+		int[] queens = queenNumbers();
+		printQueen(queens);
+
+	}
+	public static int[] queenNumbers()
+	{
+		int[] queens = new int[8];
+		queens[0] = (int)(Math.random() * 8);
+		
+		for (int i = 1;i < queens.length;i++)
+		{
+			boolean isQueens = true;
+			while(isQueens)
+			{
+				boolean isQueen = false;
+				int queen = (int)(Math.random() * 8);
+				for (int j = 0;j < i;j++)
+				{
+					if (queen == queens[j] 
+					|| (queens[j] - queen) == i 
+					|| (queens[j] - queen) == -i)
+					{
+						isQueen = true;
+						break;
+					}
+
+				}
+				if (!isQueen)
+				{
+					queens[i] = queen;
+					isQueens = false;
+				}
+
+			}			
+		}
+		return queens;
+	}
+
+	public static void printQueen(int[] queens)
+	{
+		for (int i = 0;i < queens.length;i++)
+		{
+			int queen = queens[i];
+			for (int j = 0;j < queens.length;j++)
+			{
+				System.out.print("|");
+				if (j == queen)
+					System.out.print("Q");
+				else
+					System.out.print(" ");
+			}
+			System.out.print("|");
+			System.out.println();
+		}
+	}
+}
+
+class Work_23
+{
+	public static void main(String[] args)
+	{
+		int student = 100;
+		int cabinetnumber = 100;
+		boolean[] cabinets = cabinetGenerate(100);
+		switchCabinet(cabinets,student);
+		for (int i = 0; i < cabinets.length;i++)
+		{
+			System.out.printf("cabinet%d:%b ",i+1,cabinets[i]);
+			if (i % 5 == 0)
+			{
+				System.out.println();
+			}
+		}
+
+	}
+	public static boolean[] cabinetGenerate(int n)
+	{
+		boolean[] cabinets = new boolean[n];
+		return cabinets;
+
+	}
+	public static void switchCabinet(boolean[] cabinets,int student)
+	{
+		for (int i = 1; i <= student;i++)
+		{
+			for (int j = 0;j < cabinets.length;j++)
+			{
+				if ((j + 1) % i == 0)
+					cabinets[j] = !cabinets[j];
+			}
+		}
+	}
+}
+
+
+
+
