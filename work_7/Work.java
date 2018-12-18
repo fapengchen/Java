@@ -1055,5 +1055,189 @@ class Work_23
 }
 
 
+class Work_24
+{
+	public static void main(String[] args)
+	{
+		int[] deck = new int[52];
+		for(int i = 0;i < deck.length; i++)
+		{
+			deck[i] = i;
+		}
+		randomCards(deck);
+		lookingBrand(deck);
+	}
+	public static void randomCards(int[] numbers)
+	{
+		for (int i = 0;i < numbers.length;i++)
+		{
+			int index = (int)(Math.random() * numbers.length);
+			int temp = numbers[i];
+			numbers[i] = numbers[index];
+			numbers[index] = temp;
+		}
+	}
+	public static void lookingBrand(int[] numbers)
+	{
+		String[] suits = {"Spades", "Hearts","Diamonds","Clubs"};
+		String[] ranks = {"Ace","2","3","4","5","6","7","8","9",
+							"10","Jack","Queen","King"};
+		String[] color = new String[4];
+		int i = 0;
+		int n = 0;
+		String suit = "";
+		String rank = "";
+		while(n < 4)
+		{
 
+			boolean iscolor = true;
+			suit = suits[numbers[i] / 13];
+			for (int j = 0;j < color.length;j++)
+			{
+				if (color[j] == suit)
+				{
+					iscolor = false;
+					break;
+				}
+			}
+			if (iscolor)
+			{
+				color[n] = suit;
+				rank =  ranks[numbers[i] % 13];
+				System.out.println(rank + " of " + suit);
+				n++;
+			}
+			i++;
+		}
+		System.out.println("Number of picks: " + i);
+	}
+}
 
+class Work_25
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter values for a, b, and c: ");
+		double[] eqn = new double[3];
+
+		for (int i = 0; i < eqn.length;i++)
+		{
+			eqn[i] = input.nextDouble();
+		}
+		double mat = Math.sqrt(eqn[1] * eqn[1] - 4 * eqn[0] * eqn[2]);
+		double[] roots = {(-eqn[1] + mat)/(2 * eqn[0]),(-eqn[1] - mat)/(2 * eqn[0])};
+	}
+	public static int solveQuadratic(double[] eqn, double[] roots)
+	{
+		double mat = eqn[1] * eqn[1] - 4 * eqn[0] * eqn[2];
+		if (mat > 0)
+		{
+			System.out.println("r1: " + roots[0] + "r2: " + roots[1]);
+			return 2;
+		}
+
+		else if(mat == 0)
+		{
+			System.out.println("r: " + roots[0]);
+			return 1;
+		}
+
+		
+		else
+		{
+			System.out.println("wujie");
+			return 0;
+		}
+	}
+}
+class Work_26
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter list1: ");
+		int n = input.nextInt();
+		int[] list1 = new int[n];
+
+		for (int i = 0;i < list1.length;i++)
+		{
+			list1[i] = input.nextInt();
+		}
+		System.out.print("Enter list2: ");
+		n = input.nextInt();
+		int[] list2 = new int[n];
+		for (int i = 0;i < list1.length;i++)
+		{
+			list2[i] = input.nextInt();
+		}
+
+		if (equals(list1,list2))
+			System.out.println("Two lists are strictly identical");
+		else
+			System.out.println("Two lists are not strictly identical");
+	}
+	public static boolean equals(int[] list1,int[] list2)
+	{
+		if (list1.length != list2.length)
+			return false;
+		else
+		{
+			for (int i = 0;i < list1.length;i++)
+			{
+				if (list1[i] != list2[i])
+				{
+					System.out.println(list1[i] + " " + list2[i]);
+					return false;
+				}
+			}
+			return true;
+		}
+	}
+}
+
+class Work_27
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter list1: ");
+		int n = input.nextInt();
+		int[] list1 = new int[n];
+
+		for (int i = 0;i < list1.length;i++)
+		{
+			list1[i] = input.nextInt();
+		}
+		System.out.print("Enter list2: ");
+		n = input.nextInt();
+		int[] list2 = new int[n];
+		for (int i = 0;i < list1.length;i++)
+		{
+			list2[i] = input.nextInt();
+		}
+
+		if (equals(list1,list2))
+			System.out.println("Two lists are strictly identical");
+		else
+			System.out.println("Two lists are not strictly identical");
+	}
+	public static boolean equals(int[] list1,int[] list2)
+	{
+		for (int i = 0;i < list1.length;i++)
+		{
+			boolean isequals = false;
+			for (int j = 0;j < list2.length;j++)
+			{
+				if (list1[i] == list2[j])
+					isequals = true;
+			}
+			if (!isequals)
+				return false;
+		}
+		return true;
+	}
+}
