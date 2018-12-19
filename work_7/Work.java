@@ -1227,17 +1227,236 @@ class Work_27
 	}
 	public static boolean equals(int[] list1,int[] list2)
 	{
-		for (int i = 0;i < list1.length;i++)
-		{
-			boolean isequals = false;
-			for (int j = 0;j < list2.length;j++)
-			{
-				if (list1[i] == list2[j])
-					isequals = true;
-			}
-			if (!isequals)
-				return false;
-		}
-		return true;
+		java.util.Arrays.sort(list1);
+    	java.util.Arrays.sort(list2);
+    	return java.util.Arrays.equals(list1, list2);
 	}
+
+}
+
+class Work_28
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter ten Numbers: ");
+		int[] numbers = new int[10];
+
+		for (int i = 0;i < numbers.length;i++)
+		{
+			numbers[i] = input.nextInt();
+		}
+		combination(numbers);
+	}
+
+	public static void combination(int[] numbers)
+	{
+		for (int i = 0;i < numbers.length;i++ )
+		{
+			for (int j = 0; j < numbers.length;j++)
+			{
+				System.out.println(numbers[i] + " " + numbers[j]);
+			}
+		}
+	}
+
+}
+
+class Work_29
+{
+	public static void main(String[] args)
+	{
+		String[] suits = {"Ace","2","3","4","5","6","7","8","9","10","Jack","Queen","King"};
+		int sum = 0;
+		int n = 0;
+		String board = "";
+		String[] boards = new String[4];
+		while (sum != 24)
+		{	
+			sum = 0;
+
+			for (int i = 0;i < 4;i++)
+			{
+				board = suits[numberRandom() % 13];
+				sum += score(board);
+				boards[i] = board;
+
+			}
+			n++;
+		}
+		System.out.println("n: "+ n);
+	}
+
+	public static int score(String s)
+	{
+		char s1 = s.charAt(0);
+		if (s1 < 58)
+			return s1 - '0';
+		else {
+			if (s1 == 'K')
+				return 13;
+			else if (s1 == 'Q')
+				return 12;
+			else if (s1 == 'J')
+				return 11;
+			else
+				return 1;
+		}
+
+	}
+	public static int numberRandom()
+	{
+		int n = (int)(Math.random() * 52);
+
+		return n;
+	}
+}
+
+class Work_30
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the number of values: ");
+		int n = input.nextInt();
+
+		System.out.print("Enter the values: ");
+		int[] numbers = new int[n];
+
+		for (int i = 0; i < numbers.length;i++)
+		{
+			numbers[i] = input.nextInt();
+		}
+		if (isConsecutiveFour(numbers))
+			System.out.println("The list has consecutive fours");
+		else
+			System.out.println("The list has no consecutive fours");
+	}
+	public static boolean isConsecutiveFour(int[] values)
+	{
+		int n = 1;
+		int max = 0;
+		for (int i = 0;i < values.length - 1;i++)
+		{
+			if (values[i] == values[i+1])
+				n++;
+			else
+			{
+				if (n > max)
+					max = n;
+				n = 1;
+			}
+		}
+		System.out.println(max);
+		if (max == 4)
+			return true;
+		else
+			return false;
+	}
+}
+
+class Work_31
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter list1: ");
+		int n = input.nextInt();
+		int[] list1 = new int[n];
+		for (int i = 0; i < list1.length;i++)
+		{
+			list1[i] = input.nextInt();
+		}
+		System.out.print("Enter list2: ");
+		n = input.nextInt();
+		int[] list2 = new int[n];
+		for (int i = 0; i < list2.length;i++)
+		{
+			list2[i] = input.nextInt();
+		}
+		java.util.Arrays.sort(list1);
+		java.util.Arrays.sort(list2);
+		int[] list = merge(list1, list2);
+		System.out.print("The merged list is ");
+		for (int i = 0;i<list.length;i++)
+		{
+			System.out.println( list[i] + " ");
+		}
+
+
+	}
+	public static int[] merge(int[] list1,int[] list2)
+	{
+		int[] list = new int[list1.length + list2.length];
+		int i = 0;
+		int j = 0;
+		for (int z = 0;z < list.length;z++)
+		{
+
+			if (i == list1.length)
+			{
+				list[z] = list2[j];
+				j++;
+			}
+			else if (j == list2.length)
+			{
+				list[z] = list1[i];
+				i++;
+			}
+
+			else
+			{
+				if (list1[i] < list2[j])
+				{
+					list[z] = list1[i];
+					i++;
+				}
+				else
+				{
+					list[z] = list2[j];
+					j++;
+				}
+			}
+		}
+		return list;
+	}
+}
+class Work_32
+{
+	public static void main(String[] args){
+		Scanner input = new Scanner(System.in);
+		System.out.print("Enter list: ");
+		int n = input.nextInt();
+		int[] nums = new int[n];
+		for(int i = 0; i < nums.length; i++){
+			nums[i] = input.nextInt();
+		}
+		int num = partition(nums);
+		System.out.println("After the partition, the list is ");
+		for(int i = 0; i < nums.length; ++i)
+			System.out.print(nums[i] + " ");
+	}
+ 
+	public static int partition(int[] list){
+		int temp = 0;
+		int j = 0;
+		for(int i = 1; i < list.length; ++i){
+			if(list[i] <= list[j]){
+				temp = list[i];
+				list[i] = list[j];
+				list[j] = temp;
+				
+				temp = list[j+1];
+				list[j+1] = list[i];
+				list[i] = temp;
+				
+				++j;
+			}
+		}
+		return j;
+	}
+
 }
