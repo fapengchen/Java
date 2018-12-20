@@ -1460,3 +1460,99 @@ class Work_32
 	}
 
 }
+
+class Work_35
+{
+	public static void main(String[] args)
+	{
+		play();
+	}
+	public static String radomWord()
+	{
+		String[] word = {"upset","morning","ruler","orange","quilt","purple","name","friend","middle"};
+		return word[(int)(Math.random() * word.length)];
+	}
+	public static void play()
+	{
+		Scanner input = new Scanner(System.in);
+		String word = radomWord();
+
+		boolean isStop = false;
+		int error = 0;
+		int[] guess_word = new int[word.length()];
+		char ch;
+		String guess = generate_word(guess_word,word);
+		char yorn;
+		while(!isStop)
+		{
+			System.out.print("(Guess) Enter a letter in word " + guess + " > ");
+			ch = input.nextLine().charAt(0);
+			if (wordThere(word,ch))
+			{
+				if (wordThere(guess,ch))
+					System.out.println("\t" + ch + " is already in word");
+				else
+				{
+					wordNumber(guess_word,word,ch);
+				}
+			}
+			else
+			{
+				System.out.println( "\t"  + ch + " is not in the word");
+				error++;
+			}
+			guess = generate_word(guess_word,word);
+			if (judgment(word,guess))
+			{
+				System.out.printf("The word is program.You missed %d time\n",error);
+				System.out.print("Do you want to guess another word? Enter y or n> ");
+				yorn = input.nextLine().charAt(0);
+				if (yorn == 'y')
+				{
+					word = radomWord();
+					guess_word = new int[word.length()];
+					guess = generate_word(guess_word,word);
+				}
+				else
+					isStop = true;
+			}
+		}
+
+	}
+	public static String generate_word(int[] n,String word)
+	{
+		String generate = "";
+
+		for (int i = 0;i < n.length;i++)
+		{
+			if (n[i] == 0)
+				generate += "*";
+			else
+				generate += word.charAt(i);
+		}
+		return generate;
+	}
+	public static boolean wordThere(String s,char ch)
+	{
+		for (int i = 0;i < s.length();i++)
+		{
+			if (s.charAt(i) == ch)
+				return true;
+		}
+		return false;
+	}
+	public static void wordNumber(int[] n,String word,char ch)
+	{
+		for (int i = 0; i < n.length;i++)
+		{
+			if (word.charAt(i) == ch)
+			{
+				n[i]++;
+			}
+		}
+	}
+	public static boolean judgment(String s1,String s2)
+	{
+		return s1.equals(s2);
+	}
+}
