@@ -308,7 +308,8 @@ class Work_6
 	}
 }
 class Work_7{
-	public static void main(String[] args){
+	public static void main(String[] args)
+	{
 	double[][] points = {{-1,0,3},{-1,-1,-1},{4,1,1},{2,0.5,9},
 								 {3.5,2,-1},{3,1.5,3},{-1.5,4,2},{5.5,4,-0.5}};
 
@@ -331,11 +332,11 @@ class Work_7{
 
 		System.out.println("The closet two points are" + 
 			"(" + points[p1][0] +", " + points[p1][1] + ", "+ points[p1][2] + ") adn (" +
-			points[p2][0] + ", " + points[p2][1] + ", "+ points[p2][2] ")");
+			points[p2][0] + ", " + points[p2][1] + ", "+ points[p2][2] + ")");
 	}
 	public static double distance(
 		double x1,double y1,double z1,double x2,double y2,double z2){
-		return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+		return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1) + (z2 - z1) * (z2 - z1));
 	}
 }
 class Work_8
@@ -356,30 +357,174 @@ class Work_8
 		int p1 = 0,p2 = 1;
 		double shortestDistance = distance(points[p1][0],points[p1][1],
 			points[p2][0],points[p2][1]);
-		double[][] = new double[][]
+		double[][] coordinates = generate(points[p1][0],points[p1][1],points[p2][0],points[p2][1]);
 		for (int i = 0;i < points.length;i++){
-			for (int j = i + 1;j < points.length;j++){
+			for (int j = i + 1;j < points.length;j++)
+			{
 				double distance = distance(points[i][0],points[i][1],
 					points[j][0],points[j][1]);
-				if (shortestDistance < distance)
+				if (shortestDistance > distance)
 				{
 					p1 = i;
 					p2 = j;
 					shortestDistance = distance;
+					coordinates = generate(points[p1][0],points[p1][1],points[p2][0],points[p2][1]);
+				}
+				else if (shortestDistance == distance)
+				{	if (j != 1)
+						coordinates = addCoordinates(coordinates,points[i][0],points[i][1],points[j][0],points[j][1]);
 				}
 
 			}
 		}
-
-
-
-		System.out.println("The closet two points are" + 
-			"(" + points[p1][0] +", " + points[p1][1]+") adn (" +
-			points[p2][0] + ", " + points[p2][1] + ")");
+		for (int i = 0; i < coordinates.length;i++)
+			System.out.printf("The closest two points are (%.1f, %.1f) and (%.1f, %.1f)\n",coordinates[i][0],coordinates[i][1],coordinates[i][2],coordinates[i][3]);
 	}
-	public static double[][]
+	public static double[][] generate(double x1,double y1,double x2,double y2)
+	{
+		double[][] list = {{x1,y1,x2,y2}};
+		return list;
+	}
+	public static double[][] addCoordinates(double[][] list,
+		double x1,double y1,double x2,double y2)
+	{
+		double[][] list1 = new double[list.length + 1][list[0].length];
+		for (int i = 0;i < list.length;i++)
+		{
+			for (int j = 0;j < list[0].length;j++)
+			{
+				list1[i][j] = list[i][j];
+			}
+		}
+		int n = list.length;
+		list1[n][0] = x1;
+		list1[n][1] = y1;
+		list1[n][2] = x2;
+		list1[n][3] = y2;
+		return list1;
+
+	}
 	public static double distance(
 		double x1,double y1,double x2,double y2){
 		return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+	}
+}
+
+class Work_9
+{
+	public static void main(String[] args)
+	{
+		play();
+	}
+	public static void play()
+	{
+		int[][] checkerboard = new int[3][3];
+		int chess = 0;
+		printChessboard(checkerboard);
+		while(true)
+		{
+			writePieces(checkerboard,chess);
+			printChessboard(checkerboard);
+			if(isvictory(checkerboard))
+				break;
+			else
+				chess++;
+
+		}
+		if (chess % 2 == 0)
+			System.out.println("X player won");
+		else
+			System.out.println("O player won");
+	}
+	public static void printChessboard(int[][] list)
+	{
+		for (int i = 0; i < list.length;i++)
+		{
+			System.out.println("-------------");
+			for (int j = 0; j < list[i].length;j++)
+			{
+				System.out.print("| ");
+				if (list[i][j] == 1)
+					System.out.print("X");
+				else if (list[i][j] == 2)
+					System.out.print("O");
+				else
+					System.out.print(" ");
+				System.out.print(" ");
+			}
+			System.out.println("|");
+		}
+		System.out.println("-------------");
+	}
+	public static void writePieces(int[][] list,int number)
+	{
+		Scanner input = new Scanner(System.in);
+
+		if (number % 2 == 0)
+		{
+			System.out.print("Enter a row (0, 1, or2) for player X: ");
+			int p1 = input.nextInt();
+			System.out.print("Enter a column (0, 1, or2) for player X: ");
+			int p2 = input.nextInt();
+			list[p1][p2] = 1;
+		}
+		else
+		{
+			System.out.print("Enter a row (0, 1, or2) for player O: ");
+			int p1 = input.nextInt();
+			System.out.print("Enter a column (0, 1, or2) for player O: ");
+			int p2 = input.nextInt();
+			list[p1][p2] = 2;
+		}
+
+	}
+	public static boolean isvictory(int[][] list)
+	{
+		for (int i = 0;i < list.length;i++)
+		{
+			if (list[i][0] != 0 && list[i][1] != 0 && list[i][2] != 0
+			 && list[i][0] == list[i][1] && list[i][0] == list[i][2] && list[i][1] == list[i][2])
+				return true;
+			if (list[0][i] != 0 && list[1][i] != 0 && list[2][i] != 0
+			 && list[0][i] == list[1][i] && list[0][i] == list[2][i] && list[1][i] == list[2][i])
+				return true;
+		}
+		if (list[0][0] != 0 && list[1][1] != 0 && list[2][2] != 0
+		 && list[0][0] == list[1][1] && list[0][0] == list[2][2] && list[1][1] == list[2][2])
+			return true;
+		if (list[0][2] != 0 && list[1][1] != 0 && list[2][0] != 0
+		 && list[0][2] == list[1][1] && list[0][2] == list[2][0] && list[1][1] == list[2][0])
+			return true;
+		return false;
+	}
+
+}
+
+class Work_10
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		int[][] number = new int[4][4];
+
+		for (int i = 0;i < number.length;i++)
+		{
+			for (int j = 0;j < number[i].length;j++)
+			{
+				number[i][j] = input.nextInt();
+			}
+		}
+
+		int row = 0;
+		int column = 0;
+		for (int i = 0;i < number.length;i++)
+		{
+			for (int j = 0;j < number[i].length;j++)
+			{
+				if (number[i][j]==1)
+
+			}
+		}
+
 	}
 }
