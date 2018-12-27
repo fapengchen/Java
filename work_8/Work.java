@@ -506,7 +506,7 @@ class Work_10
 	{
 		Scanner input = new Scanner(System.in);
 		int[][] number = new int[4][4];
-
+		System.out.println("Enter a 4-by-4 matrix :");
 		for (int i = 0;i < number.length;i++)
 		{
 			for (int j = 0;j < number[i].length;j++)
@@ -517,14 +517,72 @@ class Work_10
 
 		int row = 0;
 		int column = 0;
+		int max_n1 = 0;
+		int max_n2 = 0;
 		for (int i = 0;i < number.length;i++)
 		{
+			int n1 = 0;
+			int n2 = 0;
 			for (int j = 0;j < number[i].length;j++)
 			{
-				if (number[i][j]==1)
+				if (number[i][j] == 1)
+					n1++;
+				if (number[j][i] == 1)
+					n2++;
+			}
+			if (n1 > max_n1)
+			{
+				row = i;
+				max_n1 = n1;
+			}
+			if (n2 > max_n2)
+			{
+				column = i;
+				max_n2 = n2;
+			} 
+		}
+		System.out.println("The largest row index: " + row);
+		System.out.println("The largest column index: " + column);
 
+	}
+}
+
+class Work_11
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		System.out.print("Enter a number between 0 and 511: ");
+		int n = input.nextInt();
+		int[][] list = new int[3][3];
+		int a = 0;
+		int i = list.length-1;
+		int j = list[0].length-1;
+		while(n > 0)
+		{
+			a = n % 2;
+			n = n / 2;
+			list[i][j] = a;
+			j--;
+			if (j == -1)
+			{
+				i--;
+				j = list[0].length-1;
 			}
 		}
 
+		for (i = 0;i < list.length;i++)
+		{
+			for (j = 0;j < list[i].length;j++)
+			{
+				if (list[i][j] == 0)
+					System.out.print("H ");
+				else
+					System.out.print("T ");
+			}
+			System.out.println();
+		}
+
 	}
+
 }
