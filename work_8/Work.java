@@ -586,3 +586,95 @@ class Work_11
 	}
 
 }
+
+class Work_12
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		double[] rates = {0.10, 0.15, 0.25,0.28,0.33,0.35};
+		int[][] brackets = {
+			{8350,33950,82250,171550,372950},
+			{16700,67900,137050,20885,372950},
+			{8350,33950,6825,104425,186475},
+			{11950,45500,117450,190200,372950}
+		};
+		System.out.print("Enter 0 minus 5: ");
+		int n = input.nextInt();
+		System.out.print("Enter a year's salary: ");
+		int wage = input.nextInt(); 
+		double sum = 0;
+		if (wage < brackets[n][0])
+			sum = wage * rates[0];
+		else 
+		{
+			sum = brackets[n][0] * rates[0];
+			for (int i = 1;i < brackets[n].length;i++)
+				if (wage > brackets[n][i])
+					sum += (brackets[n][i] - brackets[n][i-1]) * rates[i];
+				else 
+				{
+					sum += (wage - brackets[n][i-1]) * rates[i + 1];
+					break;
+				}
+		}
+
+		if (wage > brackets[n][4])
+			sum += (wage - brackets[n][4]) * rates[5];
+		System.out.println(sum);
+
+
+	}
+}
+
+class Work_13
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the number of rows and columns of the array: ");
+		int n1 = input.nextInt();
+		int n2 = input.nextInt();
+
+		double[][] list = new double[n1][n2];
+		for (int i = 0; i < list.length;i++)
+			for (int j = 0; j < list[i].length;j++)
+			{
+				list[i][j] = input.nextDouble();
+			}
+		int[] index = locateLargest(list);
+		System.out.println("The location of the largest element is at (" + index[0]+", " + index[1]+")");
+	}
+	public static int[] locateLargest(double[][] a)
+	{
+		int[] maxIndex = new int[2];
+		double max = a[0][0];
+		int max_i = 0;
+		int max_j = 0;
+		for (int i = 0;i < a.length;i++)
+		{
+			for(int j = 0;j < a[i].length;j++)
+			{
+				if (a[i][j] > max)
+				{
+					max = a[i][j];
+					max_i = i;
+					max_j = j;
+				}
+			}			
+		}
+		maxIndex[0] = max_i;
+		maxIndex[1] = max_j; 
+
+		return maxIndex;
+	}
+}
+
+class Work_14
+{
+	public static void main(String[] args)
+	{
+
+	}
+}
