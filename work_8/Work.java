@@ -1,5 +1,6 @@
 
 import java.util.Scanner;
+import java.util.Arrays;
 
 class Work_1
 {
@@ -671,10 +672,70 @@ class Work_13
 	}
 }
 
-class Work_14
+class Work_17
 {
 	public static void main(String[] args)
-	{
+		{
+			Scanner input = new Scanner(System.in);
 
-	}
+			int n = input.nextInt();
+			double limit = input.nextDouble();
+			double[][] borrower = new double[n][n];
+			double[] balance = new double[n];
+			double[] total = new double[n];
+			boolean[] mark = new boolean[n];
+			
+			for(int i = 0; i < n; ++i) Arrays.fill(borrower[i], 0.0);
+			for(int i = 0; i < n; ++i){
+				balance[i] = input.nextDouble();
+				int cnt = input.nextInt();
+				for(int j = 0; j < cnt; ++j){
+					int index = input.nextInt();
+					borrower[i][index] = input.nextDouble();
+				}
+			}
+
+
+			for (int i = 0;i < n;++i)
+			{
+				total[i] = balance[i];
+				for (int j = 0;j < n;++j)
+				{
+					total[i] += borrower[i][j];
+				}
+			}
+			Arrays.fill(mark,true);
+
+			System.out.println(Arrays.toString(borrower[3]));
+			for (int i = 0;i < n;i++)
+			{
+				if (total[i] < limit && mark[i])
+				{
+					mark[i] = false;
+					for (int j = 0;j < n;j++)
+					{
+						System.out.println(borrower[j][i]);
+						borrower[j][i] = 0;
+
+					}
+					System.out.println();	
+
+					for(int v = 0; v < n; ++v)
+					{
+						total[v] = balance[v];
+						for(int j = 0; j < n; ++j)
+						{
+							total[v] += borrower[v][j];
+						}
+					}
+					i = -1;
+				}		
+			}
+
+			for (int i = 0;i < n;i++)
+			{
+				if (!mark[i])
+					System.out.print(i + " ");
+			}
+		}
 }
