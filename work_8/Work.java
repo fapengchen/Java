@@ -672,6 +672,200 @@ class Work_13
 	}
 }
 
+class Work_14
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the size for the matrix: ");
+		int n = input.nextInt();
+
+		int[][] list = new int[n][n];
+
+		for (int i = 0;i < list.length;i++)
+		{
+			for (int j = 0;j < list[i].length;j++)
+			{
+				list[i][j] = input.nextInt();
+			}
+		}
+		row(list);
+		column(list);
+		if (diagonal(list))
+			System.out.println("We have the same number on the main diagonal");
+		else
+			System.out.println("No same numbers on the major diagonal");
+
+		if (subDiaqonal(list))
+			System.out.println("We have the same number on the main sub-diaqonal");
+		else
+			System.out.println("No same numbers on the sub-diaqonal");
+	}
+
+	public static void row(int[][] list)
+	{
+		boolean isRepeat = false;
+		int n = list[0].length;
+		for (int i = 0;i < list.length;i++)
+		{
+			int sum = 0;
+			int add = list[i][0];
+			for (int j = 0;j < list[i].length;j++)
+			{
+				if (add == list[i][j])
+				{
+					sum++;
+				}
+			}
+			if (sum == n)
+			{
+				System.out.printf("All %d on row %d\n",add,i);
+				isRepeat = true;
+			}
+		}
+		if (!isRepeat)
+			System.out.println("No same numbers on a row");
+	}
+	public static void column(int[][] list)
+	{
+		boolean isRepeat = false;
+		int n = list.length;
+		for (int i = 0;i < list.length;i++)
+		{
+			int sum = 0;
+			int add = list[0][i];
+			for (int j = 0;j < list[i].length;j++)
+			{
+				if (add == list[j][i])
+				{
+					sum++;
+				}
+			}
+			if (sum == n)
+			{
+				System.out.printf("All %d on column %d\t",add,i);
+				isRepeat = true;
+			}
+		}
+		if (!isRepeat)
+			System.out.println("No same numbers on a column");
+	}
+	public static boolean diagonal(int[][] list)
+	{
+		int add = list[0][0];
+		for (int i = 0; i < list.length;i++)
+		{
+			if (add != list[i][i])
+				return false;
+		}
+		return true;
+	}
+	public static boolean subDiaqonal(int[][] list)
+	{
+		int add = list[0][list[0].length - 1];
+		for (int i = 0; i < list.length;i++)
+		{
+			if (add != list[i][list.length - 1 - i])
+				return false;
+		}
+		return true;
+
+	}
+}
+
+
+class Work_15
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter five points: ");
+		double[][] list = new double[5][2];
+		for (int i = 0; i < list.length;i++)
+		{
+			for (int j = 0;j < list[i].length;j++)
+			{
+				list[i][j] = input.nextDouble();
+			}
+		}
+		if (sameLine(list))
+			System.out.println("The five points are the same line");
+		else
+			System.out.println("The five points are not on the same line");
+	}
+	public static boolean sameLine(double[][] points)
+	{
+		for (int i =0;i <= points[0].length;i++)
+		{
+			for (int j = i + 1;j < points.length - 1;j++)
+			{
+				for (int z = j + 1;z < points.length;z++){
+					{
+						System.out.println(i+" " + j + " " + z);
+						if (!onTheLineSegement(points[i][0],points[i][1],
+							points[j][0],points[j][1],points[z][0],points[z][1]))
+							return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
+	public static boolean onTheLineSegement(double x0,double y0,
+		double x1,double y1,double x2,double y2)
+	{
+		double add = (x1 - x0) * (y2 - y0) - (x2 - x0) * (y1 - y0);
+		return add == 0;
+	}
+
+}
+
+class Work_16
+{
+	public static void main(String[] args)
+	{
+		int[][] list = {{4,2},{1,7},{1,2},{1,1},{4,1}};
+		sort(list);
+	}
+	public static void sort(int m[][])
+	{
+
+		for (int i = 0;i < m.length - 1;i++)
+		{
+			int[] minlist = m[i];
+			int minIndex = i;
+			for (int j = i + 1;j < m.length;j++)
+			{
+				if (m[j][0] < minlist[0])
+				{
+					minlist = m[j];
+					minIndex = j;
+				}
+				else if (m[j][0] == minlist[0] && 
+					m[j][1] < minlist[1])
+				{
+						minlist = m[j];
+						minIndex = j;
+				}
+
+			}
+			if (minIndex != i)
+			{
+				m[minIndex] = m[i];
+				m[i] = minlist;
+			}
+		} 
+
+		System.out.print("{");
+		for (int[] e:m)
+		{
+			System.out.print(Arrays.toString(e));
+		} 
+		System.out.print("}\n");
+	}
+}
 class Work_17
 {
 	public static void main(String[] args)
@@ -738,4 +932,271 @@ class Work_17
 					System.out.print(i + " ");
 			}
 		}
+}
+
+class Work_18
+{
+	public static void main(String[] args)
+	{
+		int[][] m = {{1,2},{3,4},{5,6},{7,8},{9,10}};
+		shuffle(m);
+		for (int[] e:m)
+		{
+			System.out.print(Arrays.toString(e));
+		}
+		System.out.println();
+	}
+	public static void shuffle(int[][] m)
+	{
+		for (int i = 0;i < m.length;i++)
+		{
+			for (int j = 0;j < m[i].length;j++)
+			{
+				int iIndex = (int)(Math.random() * m.length);
+				int jIndex = (int)(Math.random() * m[i].length);
+				int temp = m[i][j];
+				m[i][j] = m[iIndex][jIndex];
+				m[iIndex][jIndex] = temp;
+			}
+		}
+	}
+}
+class Work_19
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		int[][] list = new int[6][7];
+
+		for (int i = 0; i < list.length;i++)
+		{
+			for (int j = 0; j < list[i].length;j++)
+			{
+				list[i][j] = input.nextInt();
+			}
+		}
+		if (isConsecutiveFour(list))
+			System.out.println("Yes");
+		else
+			System.out.println("No");
+	}
+
+	public static boolean isConsecutiveFour(int[][] values)
+	{
+		for (int i = 0; i < values.length;i++)
+		{
+			for (int j = 0;j < values.length - 3;j++)
+			{
+				if (isSame(values[i][j],values[i][j + 1],values[i][j + 2],values[i][j + 3]))
+					return true;
+			}
+		}
+		for (int i = 0; i < values.length;i++)
+		{
+			for (int j = 0;j < values.length - 3;j++)
+			{
+				if (isSame(values[j][i],values[j + 1][i],values[j + 2][i],values[j + 3][i]))
+					return true;
+			}
+		}
+		for (int i = 0; i < values.length - 3;i++)
+		{
+			for (int j = 0;j < values.length - 3;j++)
+			{
+				if (isSame(values[i][j],values[i + 1] [j + 1],values[i + 2][i + 2],values[i + 3][j + 3]))
+					return true;
+			}
+		}
+		for (int i = 0; i < values.length - 3;i++)
+		{
+			for (int j = values.length - 1;j > 3;j--)
+			{
+				if (isSame(values[i][j],values[i + 1] [j - 1],values[i + 2][i - 2],values[i + 3][j - 3]))
+					return true;
+			}
+		}
+		for (int i = values.length - 1; i > 3;i--)
+		{
+			for (int j = 0;j < values.length - 3;j++)
+			{
+				if (isSame(values[i][j],values[i - 1] [j - 1],values[i - 2][i - 2],values[i - 3][j - 3]))
+					return true;
+			}
+		}
+		return false;
+	}
+	public static boolean isSame(int n1,int n2,int n3,int n4)
+	{
+		return n1 == n2 && n1 == n3 && n1 == n4
+			&& n2 == n3 && n2 == n4 && n3 == n4;
+	}
+}
+
+class Work_20
+{
+	public static void main(String[] args)
+	{
+		play();
+	}
+	public static void play()
+	{
+		Scanner input = new Scanner(System.in); 
+		int[][] pieces = new int[6][7];
+		int[] columns = new int[7];
+		int n = 0;
+		int value;
+		do
+		{
+			printBoard(pieces);
+			if (n % 2 == 0){
+				System.out.print("Drop a red disk at column (0-6): ");
+				value = 1;
+			}
+			else{
+				System.out.print("Drop a yellow disk at column (0-6): ");
+				value = 2;
+			}
+			int index = input.nextInt();
+			int i = columns[index];
+			pieces[i][index] = value;
+			columns[index]++;
+			if (isFinish(pieces))
+				break;
+			else if (isFull(columns))
+				System.exit(0);
+			n++;
+		}while(true);
+		printBoard(pieces);
+		if (n % 2 == 1)
+			System.out.println("The yellow player won");
+		else
+			System.out.println("The yellow player won");
+	}
+	public static boolean isFull(int[] list)
+	{
+		int n = 0;
+		for (int i = 0; i < list.length;i++)
+		{
+			if (list[i] != 6)
+				return false;
+			n++;
+		}
+		if (n == 7)
+			return true;
+		return false;
+
+	}
+	public static void printBoard(int[][] list)
+	{
+		for (int i = list.length - 1;i >= 0;i--)
+		{
+			for (int j = 0;j < list[i].length;j++)
+			{
+				System.out.print("|");
+				if (list[i][j] == 1)
+					System.out.print("R");
+				else if (list[i][j] == 2)
+					System.out.print("Y");
+				else
+					System.out.print(" ");
+			}
+			System.out.print("|\n");
+		}
+		System.out.println("------------------");
+	}
+	public static boolean isFull(int[][] list)
+	{
+		for (int i = 0;i < list.length;i++)
+		{
+			for (int j = 0;j < list[i].length;j++)
+			{
+				if (list[i][j] == 0)
+					return false;
+			}
+		}
+
+		return true;
+	}
+	public static boolean isFinish(int[][] list)
+	{
+
+		for (int i = 0;i < list.length;i++)
+		{
+			for (int j = 0;j < list.length - 3;j++)
+			{
+
+				if (list[i][j] != 0)
+				{
+					if (isSame(list[i][j], list[i][j + 1],list[i][j + 2],list[i][j + 3]))
+					{
+						return true;
+					}
+				}
+			}
+		}
+		for (int i = 0;i < list.length -3;i++)
+		{
+			for (int j = 0;j < list.length ;j++)
+			{
+				if (list[i][j] != 0)
+				{
+					if (isSame(list[i][j], list[i + 1][j],list[i + 2][j],list[i + 3][j])){
+						return true;
+					}
+				}
+			}
+		}
+		for (int i = 0;i < list.length - 3;i++)
+		{
+			for (int j = 0;j < list.length - 3;j++)
+			{
+				if (list[i][j] != 0)
+				{
+					if (isSame(list[i][j], list[i + 1][j + 1],list[i + 2][j + 2],list[i + 3][j + 3]))
+						return true;
+				}
+			}
+		}
+		for (int i = list.length - 1;i > 3;i--)
+		{
+			for (int j = 0;j < list.length - 3;j++)
+			{
+				if (list[i][j] != 0)
+				{
+					if (isSame(list[i][j], list[i - 1][j + 1],list[i - 2][j + 2],list[i - 3][j + 3]))
+						return true;
+				}
+			}
+		}
+		for (int i = 0;i < list.length - 3;i++)
+		{
+			for (int j = list.length - 1;j > 3;j--)
+			{
+				if (list[i][j] != 0)
+				{
+					if (isSame(list[i][j], list[i - 1][j + 1],list[i - 2][j + 2],list[i - 3][j + 3]))
+						return true;
+				}
+			}
+		}
+		for (int i = list.length - 1;i > 3;i--)
+		{
+			for (int j = list.length - 1;j > 3;j--)
+			{
+				if (list[i][j] != 0)
+				{
+					if (isSame(list[i][j], list[i - 1][j - 1],list[i - 2][j - 2],list[i - 3][j - 3]))
+						return true;
+				}
+			}
+		}
+		return false;
+	}
+	public static boolean isSame(int n1,int n2,int n3,int n4)
+	{
+		return n1 == n2 && n1 == n3 && n1 == n4
+			&& n2 == n3 && n2 == n4 && n3 == n4;
+	}
+
 }
