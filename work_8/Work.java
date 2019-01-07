@@ -1067,7 +1067,7 @@ class Work_20
 				System.exit(0);
 			n++;
 		}while(true);
-		printBoard(pieces);
+			printBoard(pieces);
 		if (n % 2 == 1)
 			System.out.println("The yellow player won");
 		else
@@ -1199,4 +1199,520 @@ class Work_20
 			&& n2 == n3 && n2 == n4 && n3 == n4;
 	}
 
+}
+class Work_21
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the number of cities: ");
+		int n = input.nextInt();
+
+		double[][] list = new double[n][2];
+
+		System.out.println("Enter the coordinates of the cities: ");
+
+		for (int i = 0;i < n;i++)
+		{
+			for (int j = 0;j < list[i].length;j++)
+			{
+				list[i][j] = input.nextDouble();
+			}
+
+		}
+
+		double[] disList = new double[n];
+		for (int i = 0;i < list.length;i++)
+		{
+			double sum = 0;
+			for (int j = 0;j < list.length;j++)
+			{
+				
+				if (j != i)
+				{
+					sum += distance(list[i][0],list[i][1],list[j][0],list[j][1]);
+				}
+			}
+			disList[i] = sum;
+		}
+		double min = disList[0];
+		int minIndex = 0;
+		for (int i = 0;i < disList.length;i++)
+		{
+				if (min > disList[i])
+				{
+					min = disList[i];
+					minIndex = i;
+				}
+		}
+		System.out.printf("The central city is at (%.1f, %.1f)\n",list[minIndex][0],list[minIndex][1]);
+		System.out.println("The total distance to all other cities is " + min);
+	}
+	public static double distance(double x1,double y1,double x2,double y2)
+	{
+		return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+	}
+}
+
+class Work_22
+{
+	public static void main(String[] args)
+	{
+		int[][] list = new int[6][6];
+
+		for (int i = 0; i < list.length;i++)
+		{
+			for (int j = 0; j < list[i].length;j++)
+			{
+				list[i][j] = (int)(Math.random() * 2);
+			}
+		}
+		boolean even = true;
+		for (int i = 0; i < list.length;i++)
+		{
+			int row = 0;
+			int line = 0; 
+			for (int j = 0; j < list[i].length;j++)
+			{
+				System.out.print(list[i][j] + " ");
+				if (list[i][j] == 1)
+					row++;
+				if (list[j][i] == 1)
+					line++;
+			}
+			System.out.println();
+			if (row % 2 == 1 || line % 2 == 1)
+				even = false;
+		}
+		if (even)
+			System.out.println("This matrix has an even number of ones per row and column");
+		else
+			System.out.println("This matrix does not have an even number of ones per row and column");
+
+	}
+}
+
+class Work_23
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Enter a 6-by-6 matrix row by row: ");
+
+		int[][] list = new int[6][6];
+
+		for (int i = 0;i < list.length;i++)
+		{
+			for (int j = 0;j< list.length;j++)
+				list[i][j] = input.nextInt();
+		}
+		for (int i = 0;i < list.length;i++)
+		{
+			for (int j = 0;j < list[i].length;j++)
+				if (isReversal(list,i,j))
+				{
+					System.out.println("The flipped cell is at " + "(" + i + ", " + j + ")");
+					break;
+				}
+		}
+	}
+	public static boolean isReversal(int[][] list,int x,int y)
+	{
+		int n = 0;
+		int m = 0;
+		for (int i = 0;i < list.length;i++)
+		{
+			if (list[x][i] == 1)
+				n++;
+			if (list[i][y] == 1)
+				m++;
+		}
+		if (n % 2 == 1)
+			if (m % 2 == 1)
+				return true;
+
+		return false;
+	}
+}
+
+class Work_24
+{
+	public static void main(String[] args)
+	{
+
+		int[][] grid = readASolution();
+
+		System.out.println(isValid(grid)? "Valid solution ":
+			"Invalid solution");
+
+	}
+	public static int[][] readASolution(){
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Enter a Sudoku puzzle solution: ");
+		int[][] grid = new int[9][9];
+		for (int i = 0;i < 9;i++)
+			for (int j = 0; j < 9; j++)
+				grid[i][j] = input.nextInt();
+		return grid;
+	}
+
+	public static boolean isValid(int[][] grid){
+		for (int i = 0; i < 9;i++)
+		{
+			for (int j = 0;j < 9;j++){
+				int n = 0;
+				int m = 0;
+				int x = 0;
+				for (int z = 1;z <= 9;z++){
+					int row = 0;
+					int col = 0;
+					if (z == grid[i][j])
+						n++;
+					if (z == grid[j][i])
+						m++;
+					if (z == grid[j / 3 * 3 + row][i / 3 * 3 + col]){
+						x++;
+						col++;
+					}
+					if (col > 4){
+						row++;
+						col = 0;
+					}
+				}
+				if (n == 0)
+					return false;
+				if (m == 0)
+					return false;
+				if (x == 0)
+					return false;
+			}
+		}
+		return true;
+	}
+
+}
+
+class Work_25
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Enter a 3-by-3 matrix row by row: ");
+		double[][] list = new double[3][3];
+
+		for (int i = 0;i < 3;i++)
+		{
+			for (int j = 0; j < 3;j++)
+			{
+				list[i][j] = input.nextDouble();
+			}
+		}
+
+		if (isMarkovMatrix(list))
+			System.out.println("It is a Markov matrix");
+		else
+			System.out.println("It is not a Markov matrix");
+	}
+	public static boolean isMarkovMatrix(double[][] m)
+	{
+		for (int i = 0;i < m.length;i++)
+		{
+			double sum = 0;
+			for (int j = 0;j < m[i].length;j++)
+			{
+				if (m[j][i] < 0)
+					return false;
+				sum += m[j][i];
+			}
+			if (sum != 1)
+				return false; 
+		}
+		return true;
+	}
+}
+
+class Work_26
+{
+	public static void main(String[] args){
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Enter a 3-by-3 matrix row by row: ");
+		double[][] list = new double[3][3];
+
+		for (int i = 0;i < 3;i++)
+		{
+			for (int j = 0; j < 3;j++)
+			{
+				list[i][j] = input.nextDouble();
+			}
+		}
+		System.out.println("The row-sorted array is ");
+		double[][] newlist = sortRows(list);
+		for (double[] e: newlist)
+		{
+			for (double l:e){
+				System.out.print(l + " ");
+			}
+			System.out.println();	
+		}
+
+
+
+	}
+
+	public static double[][] sortRows(double[][] m){
+		double[][] list = new double[m.length][m[0].length];
+		for (int i = 0;i < m.length;i++){
+			list[i][0] = Math.min(Math.min(m[i][0],m[i][1]),m[i][2]);
+			list[i][1] = Math.max(Math.min(m[i][0],m[i][1]),m[i][2]);
+			list[i][2] = Math.max(Math.max(m[i][0],m[i][1]),m[i][2]);
+		}
+		return list;
+	}
+}
+
+
+class Work_27{
+	
+	public static void main(String args[]){
+		Scanner cin = new Scanner(System.in);
+		System.out.println("Enter a 3-by-3 matrix row by row:");
+		double[][] matrix = new double[3][3];
+		for(int i = 0; i < 3; ++i){
+			for(int j = 0; j < 3; ++j){
+				matrix[i][j] = cin.nextDouble();
+			}
+		}
+		
+		matrix = sortColumns(matrix);
+		System.out.println("The row-sorted array is ");
+		for(int i = 0; i < 3; ++i){
+			for(int j = 0; j < 3; ++j){
+				System.out.print(matrix[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+	
+	public static double[][] sortColumns(double[][] s){
+		double[][] a = s;
+		for (int i = 0; i < a.length; i++) {
+			for (int j = 0; j < a[i].length; j++) {
+				int n = j + 1;
+				for (int m = i;m < a.length;m++){
+					for (;n < a[i].length;n++){
+						if (a[i][j] > a[m][n]){
+							double min = a[m][n];
+							a[m][n] = a[i][j];
+							a[i][j] = min;
+						}
+					}
+					n = 0;
+				}
+			}
+		}
+		return a;
+	}
+}
+class Work_28
+{
+	public static void main(String[] args){
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter list1: ");
+		int[][] m1 = new int[3][3];
+		int[][] m2 = new int[3][3];
+
+		for (int i = 0; i < 3;i++){
+			for (int j = 0;j < 3;j++){
+				m1[i][j] = input.nextInt();
+			}
+		}
+		System.out.print("Enter list2: ");
+		for (int i = 0; i < 3;i++){
+			for (int j = 0;j < 3;j++){
+				m2[i][j] = input.nextInt();
+			}
+		}
+		if (equals(m1,m2))
+			System.out.println("The two arrays are strictly identical");
+		else
+			System.out.println("The two arrays are not strictly identical");
+	}
+	public static boolean equals(int[][] m1,int[][] m2){
+		for (int i = 0;i < m1.length;i++){
+			for (int j = 0;j < m1[i].length;j++){
+				if (m1[i][j] != m2[i][j])
+					return false;
+			}
+		}
+		return true;
+	}
+}
+
+class Work_29
+{
+	public static void main(String[] args){
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter list1: ");
+		int[][] m1 = new int[3][3];
+		int[][] m2 = new int[3][3];
+
+		for (int i = 0; i < 3;i++){
+			for (int j = 0;j < 3;j++){
+				m1[i][j] = input.nextInt();
+			}
+		}
+		System.out.print("Enter list2: ");
+		for (int i = 0; i < 3;i++){
+			for (int j = 0;j < 3;j++){
+				m2[i][j] = input.nextInt();
+			}
+		}
+		if (equals(m1,m2))
+			System.out.println("The two arrays are identical");
+		else
+			System.out.println("The two arrays are not identical");
+	}
+	public static boolean equals(int[][] m1,int[][] m2){
+		for (int i = 0;i < m1.length;i++){
+			for (int j = 0;j < m1[i].length;j++){
+				if (!equal(m2,m1[i][j]))
+					return false;
+			}
+		}
+		for (int i = 0;i < m1.length;i++){
+			for (int j = 0;j < m1[i].length;j++){
+				if (!equal(m1,m2[i][j]))
+					return false;
+			}
+		}
+		return true;
+	}
+	public static boolean equal(int[][] m1,int number){
+		for (int i = 0;i < m1.length;i++){
+			for (int j = 0;j < m1[i].length;j++){
+				if (m1[i][j] == number)
+					return true;
+			}
+		}
+		return false;
+	}
+}
+
+class Work_30
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Enter a, b, c, d, e, f: ");
+		double[][] a = new double[2][2];
+
+		for (int i = 0;i<a.length;i++){
+			a[i][0] = input.nextDouble();
+			a[i][1] = input.nextDouble();
+		}
+		double[] b = new double[2];
+		b[0] = input.nextDouble();
+		b[1] = input.nextDouble();
+
+		double[] list = linearEquation(a,b);
+		for (double e: list)
+		{
+			System.out.print(e + " ");
+		}
+	}
+	public static double[] linearEquation(double[][] a, double[] b)
+	{
+		double[] list = new double[2];
+		if ((a[0][0] * a[1][1] - a[0][1] * a[1][0]) == 0){
+			return null;
+		}
+		list[0] = (b[0] * a[1][1] - b[1] * a[0][1])
+				/ (a[0][0] * a[1][1] - a[0][1] * a[1][1]);
+		list[1] = (b[1] * a[0][0] - b[0] * a[1][0])
+				/ (a[0][0] * a[1][1] - a[0][1] * a[1][0]);
+		
+		return list;
+	}
+}
+class Work_31
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Enter a, b, c, d, e, f: ");
+		double[][] a = new double[4][2];
+
+		for (int i = 0;i<a.length;i++){
+			a[i][0] = input.nextDouble();
+			a[i][1] = input.nextDouble();
+		}
+
+		double[] list = getintersectingPoint(a);
+		for (double e: list)
+		{
+			System.out.print(e + " ");
+		}
+	}
+	public static double[] getintersectingPoint(double[][] points)
+	{
+		double[] list = new double[2];
+		double x1 = points[0][0];
+		double y1 = points[0][1];
+		double x2 = points[1][0];
+		double y2 = points[1][1];
+		double x3 = points[2][0];
+		double y3 = points[2][1];
+		double x4 = points[3][0];
+		double y4 = points[3][1];
+		double a = (y1 - y2);
+		double b = -(x1 - x2);
+		double c = (y3 - y4);
+		double d = -(x3 - x4);
+		double e = (y1 - y2) * x1 - (x1 - x2) * y1;
+		double f = (y3 - y4) * x3 - (x3 - x4) * y3;
+
+		if ((a * d - b * c) == 0)
+		{
+			return null;
+		}
+
+		list[0] = (e * d - b * f ) / (a * d - b * c);
+		list[1] = (a * f - e * c ) / (a * d - b * c);
+		return list;
+ 	}
+}
+
+
+class Work_32
+{
+	public static void main(String[] args){
+
+	}
+	public static double getTriangleArea(doublep[][] points){
+		double[] list = new double[3];
+
+		for (int i = 0;i < list.length - 1;i++)
+		{
+			for (int j = i + 1;j < list.length;j++)
+			{
+				list[i] = getDistance(points[i][0],points[i][1],
+									  points[j][0],points[j][1]);
+			}
+		}
+		double s = 0;
+		
+
+	}
+	public static double getDistance(double x1,double y1,double x2,double y2){
+		return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+	}
 }
