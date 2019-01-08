@@ -1695,24 +1695,241 @@ class Work_31
 class Work_32
 {
 	public static void main(String[] args){
+		Scanner input = new Scanner(System.in);
 
-	}
-	public static double getTriangleArea(doublep[][] points){
-		double[] list = new double[3];
+		System.out.print("Enter x1, y1, x2, y2, x3, y3: ");
+		double[][] list = new double[3][2];
 
-		for (int i = 0;i < list.length - 1;i++)
-		{
-			for (int j = i + 1;j < list.length;j++)
-			{
-				list[i] = getDistance(points[i][0],points[i][1],
-									  points[j][0],points[j][1]);
+		for (int i = 0;i < list.length;i++){
+			for (int j = 0;j < list[i].length;j++){
+				list[i][j] = input.nextDouble();
 			}
 		}
-		double s = 0;
-		
 
+		double area = getTriangleArea(list);
+		if (area == 0)
+			System.out.println("The three points are on the same line");
+		else
+			System.out.println("The area of the triangle is " + area);
+	}
+	public static double getTriangleArea(double[][] points){
+		double[] list = new double[3];
+		list[0] = getDistance(points[0][0],points[0][1],points[1][0],points[1][1]);
+		list[1] = getDistance(points[0][0],points[0][1],points[2][0],points[2][1]);
+		list[2] = getDistance(points[1][0],points[1][1],points[2][0],points[2][1]);
+
+		if (!isTrigon(list))
+			return 0;
+		double s = 0;
+		for (int i = 0;i < list.length;i++){
+			s += list[i];
+		}
+		s = s /2;
+		double area = s;
+		for (int i = 0;i < list.length;i++){
+			area *= (s - list[i]); 
+		}
+		area = Math.sqrt(area);
+		return area;
 	}
 	public static double getDistance(double x1,double y1,double x2,double y2){
-		return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+		return Math.pow(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1,2), 0.5);
+	}
+	public static boolean isTrigon(double[] m)
+	{
+		System.out.println(m[0] + " " + m[2] + " "+ m[0]);
+		if (m[0] + m[2] < m[1])
+			return false;
+		return true;
+	}
+}
+class Work_33
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter x1,y1,x2,y2,x3,y3,x4,y4");
+		double[][] list = new double[4][2];
+
+		for (int i =0; i < list.length;i++){
+			for (int j = 0;j < list[i].length;j++){
+				list[i][j] = input.nextDouble();
+			}
+		}
+		double[] areas = getTriangleAreas(list);
+		System.out.print("The areas are ");
+		for (double e:areas){
+			System.out.print(e + " ");
+		}
+	}
+	public static double[] getTriangleAreas(double[][] points){
+		double[] middle = getintersectingPoint(points);
+		double[] areas = new double[4];
+		int n = 0;
+		int j = 0;
+		System.out.println(Arrays.toString(middle));
+		for (int i = 0;i < points.length;i++)
+		{	
+			j = i + 1;
+			if (i == 3)
+				j = 0;
+	
+			areas[n] = getTriangleArea(middle[0],middle[1],points[i][0],points[i][1],points[j][0],points[j][1]);			
+			n++;
+		}
+		return areas;
+	}
+	public static double getTriangleArea(double x1,double y1,double x2,double y2,double x3,double y3){
+		double[] list = new double[3];
+		list[0] = getDistance(x1,y1,x2,y2);
+		list[1] = getDistance(x1,y1,x3,y3);
+		list[2] = getDistance(x2,y2,x3,y3);
+
+
+		double s = 0;
+		for (int i = 0;i < list.length;i++){
+			s += list[i];
+		}
+		s = s /2;
+		double area = s;
+		for (int i = 0;i < list.length;i++){
+			area *= (s - list[i]); 
+		}
+		area = Math.sqrt(area);
+		return area;
+	}
+	public static double getDistance(double x1,double y1,double x2,double y2){
+		return Math.pow(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1,2), 0.5);
+	}
+	public static double[] getintersectingPoint(double[][] points){
+		double[] list = new double[2];
+		double x1 = points[0][0];
+		double y1 = points[0][1];
+		double x2 = points[1][0];
+		double y2 = points[1][1];
+		double x3 = points[2][0];
+		double y3 = points[2][1];
+		double x4 = points[3][0];
+		double y4 = points[3][1];
+		double a = (y1 - y2);
+		double b = -(x1 - x2);
+		double c = (y3 - y4);
+		double d = -(x3 - x4);
+		double e = (y1 - y2) * x1 - (x1 - x2) * y1;
+		double f = (y3 - y4) * x3 - (x3 - x4) * y3;
+
+		list[0] = (e * d - b * f ) / (a * d - b * c);
+		list[1] = (a * f - e * c ) / (a * d - b * c);
+		return list;
+ 	}
+}
+class Work_34
+{
+	public static void main(String[] args){
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter 6 points: ");
+		double[][] list = new double[6][2];
+
+		for (int i = 0;i < list.length;i++){
+			for (int j = 0;j < list[i].length;j++){
+				list[i][j] = input.nextDouble();
+			}
+		}
+		double[] right = getRightmostlowestPoint(list);
+		System.out.println("The rightmost lowsest points is (" + right[0] + " ," + right[1] +")");
+	}
+	public static double[] getRightmostlowestPoint(double[][] points)
+	{
+		int right = 0;
+		for (int i = 0;i < points.length;i++){
+			if ((points[i][0] > points[right][0]) && (points[i][1] < points[right][1])){
+				right = i; 
+			}
+		}
+		return points[right];
+	}
+}
+class Work_35
+{
+	public static void main(String[] args){
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter the number of rows in the matrix: ");
+		int n = input.nextInt();
+		System.out.println("Enter the matrix row by row: ");
+		int[][] list = new int[n][n];
+		for (int i = 0;i < list.length;i++){
+			for (int j = 0; j < list.length;j++){
+				list[i][j] = input.nextInt();
+			}
+		}
+		int[]  paramter = findLargestblock(list);
+		System.out.printf("The maximum square submatrix is at (%d, %d) with size %d \n",paramter[0],paramter[1],paramter[2]);
+	}
+	public static int[] findLargestblock(int[][] m){
+		int[] parameter = new int[3];
+		int maxline = 0;
+		int maxi = 0;
+		for (int i = 0;i < m.length;i++){
+			int n = square(m,i);
+
+			if (n > maxline){
+				maxline = n;
+				maxi = i;
+			}
+		}
+		parameter[0] = maxi;
+		parameter[1] = maxi;
+		parameter[2] = maxline;
+		return parameter;
+	}public static int square(int[][] m,int x)
+	{
+		int line = 0;
+		for (int i = x;i < m.length;i++){
+			for (int j = x;j < m.length;j++){
+				if (m[i][j] != 1)
+					return line;
+			}
+			line++;
+		}
+		return m.length - x;
+	}
+}
+
+class Work_36
+{
+	public static void main(String[] args){
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter number n: ");
+		int n = input.nextInt();
+		char[][] latin = new char[n][n];
+		char d = (char)('A' + n - 1);
+		System.out.println(d);  
+		System.out.printf("Enter %d rows of letters separated by spaces: \n",n);
+
+		for (int i = 0;i < latin.length;i++){
+			String st = input.nextLine();
+			int z = 0;
+			for (int j = 0;i < st.length();j++){
+				char ch = st.charAt(j);
+				if (ch > d){
+					System.out.println("Wrong input: the letters must be from A to " + d);
+					System.exit(0);
+				}
+				else if (ch >= 'A' && ch <= d){
+					latin[i][z] = ch;
+					z++;
+				}
+			}
+		}
+
+		for (char[] e:latin){
+			for (char s:e){
+				System.out.println(s);
+			}
+		}
+
 	}
 }
